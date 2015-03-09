@@ -4,3 +4,7 @@
 /.idea/libraries
 .DS_Store
 /build
+.idea/*
+example/app.iml
+example/example.iml
+hierarchyviewer/hierarchyviewer.iml
