@@ -4,6 +4,15 @@ android {
     compileSdkVersion 21
     buildToolsVersion "21.1.1"
 
+    signingConfigs {
+        hierarchyViewerConfig {
+            storeFile file("${rootDir}/dev_tools/hierarchy_viewer.keystore")
+            storePassword "*******"
+            keyAlias "*******"
+            keyPassword "*******"
+        }
+    }
+
     defaultConfig {
         applicationId "com.polidea.hierarchyviewerdemo"
         minSdkVersion 14
@@ -12,7 +21,11 @@ android {
         versionName "1.0"
     }
     buildTypes {
+        debug {
+            signingConfig android.signingConfigs.hierarchyViewerConfig
+        }
         release {
+            signingConfig android.signingConfigs.hierarchyViewerConfig
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }

@@ -1,1 +1,1 @@
-include ':app', ':hierarchyviewer'
+include ':example', ':hierarchyviewer'

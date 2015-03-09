@@ -1,38 +1,39 @@
-package com.polidea.hierarchyviewer;
+package com.polidea.hierarchyviewer.internal;
 
 
-import android.content.Context;
 import android.os.Build;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import com.polidea.hierarchyviewer.BuildConfig;
+import com.polidea.hierarchyviewer.internal.provider.ServerInfoProvider;
 import fi.iki.elonen.NanoHTTPD;
 import java.io.IOException;
 import java.lang.reflect.Field;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class HTTPServer extends NanoHTTPD {
 
-    private static final int PORT = 8765;
 
     private final WindowManager windowManager;
 
-    private Context context;
+    private final ServerInfoProvider serverInfoProvider;
 
-    public HTTPServer(Context context) throws IOException {
-        super(PORT);
-        this.context = context;
-        this.windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+    public HTTPServer(ServerInfoProvider serverInfoProvider, WindowManager windowManager){
+        super(BuildConfig.PORT);
+        this.windowManager = windowManager;
+        this.serverInfoProvider = serverInfoProvider;
     }
 
     @Override
     public void start() throws IOException {
         super.start();
-        Log.i("HierarchyViewer", "Open website: " + Utils.getIpAddress(context) + ":" + PORT);
-    }
+        Log.i("HierarchyViewer", "Open website: " + serverInfoProvider.getIpAddress() + ":" + BuildConfig.PORT);
+     }
 
     @Override
     public Response serve(IHTTPSession session) {
@@ -55,11 +56,11 @@ public class HTTPServer extends NanoHTTPD {
     private String toHtml(List<View> viewList, int level) {
         String html = "";
         for (View view : viewList) {
-            for(int i = 0; i < level; i++) {
+            for (int i = 0; i < level; i++) {
                 html += "&nbsp;&nbsp;";
             }
             html += view + "<br/>";
-            if(view instanceof ViewGroup) {
+            if (view instanceof ViewGroup) {
                 ViewGroup viewGroup = (ViewGroup) view;
                 List<View> innerViewList = new ArrayList<>(viewGroup.getChildCount());
                 for (int i = 0; i < viewGroup.getChildCount(); i++) {
@@ -82,7 +83,7 @@ public class HTTPServer extends NanoHTTPD {
         List<View> viewList;
 
         Object views = mainViewListField.get(windowManagerGlobal);
-        if(Build.VERSION.SDK_INT >= 21) {
+        if (Build.VERSION.SDK_INT >= 21) {
             viewList = (List<View>) views;
         } else {
             View[] viewsArray = (View[]) views;
