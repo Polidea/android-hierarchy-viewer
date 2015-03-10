@@ -1,13 +1,14 @@
-package com.polidea.hierarchyviewer.internal.model;
+package com.polidea.hierarchyviewer.internal.model.view;
 
 
 import android.view.View;
 import android.view.ViewGroup;
 import com.google.gson.annotations.SerializedName;
+import com.polidea.hierarchyviewer.internal.logic.ConvertersContainer;
 import java.util.LinkedList;
 import java.util.List;
 
-public class ViewGroupModelInfo extends ViewModelInfo {
+public class ViewGroupModelInfo extends ViewModelInfo{
 
     interface Metadata {
         String CHILDREN = "children";
@@ -18,24 +19,20 @@ public class ViewGroupModelInfo extends ViewModelInfo {
     int countChildren;
 
     @SerializedName(Metadata.CHILDREN)
-    List<ViewModelInfo> children;
+    List<ModelInfo> children;
 
-    public void setDataFromView(View view) {
+    @Override
+    public void setDataFromView(View view,  ConvertersContainer convertersContainer) {
+        super.setDataFromView(view, convertersContainer);
         ViewGroup viewGroup = (ViewGroup) view;
-        super.setDataFromView(view);
         countChildren = viewGroup.getChildCount();
         if(countChildren > 0){
             children = new LinkedList<>();
         }
         for (int index = 0; index < countChildren; index++) {
             View child = viewGroup.getChildAt(index);
-            final ViewModelInfo viewModelInfo;
-            if (child instanceof ViewGroup) {
-                viewModelInfo = new ViewGroupModelInfo();
-            } else {
-                 viewModelInfo = new ViewModelInfo();
-            }
-            viewModelInfo.setDataFromView(child);
+            final ModelInfo viewModelInfo = convertersContainer.getModelInfoForClass(child.getClass());
+            viewModelInfo.setDataFromView(child, convertersContainer);
             children.add(viewModelInfo);
         }
     }

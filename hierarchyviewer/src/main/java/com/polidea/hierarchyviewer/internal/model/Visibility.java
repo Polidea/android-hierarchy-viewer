@@ -18,7 +18,7 @@ public enum Visibility {
         String GONE = "gone";
     }
 
-   static Visibility getFromViewVisibility(int visibility) {
+   public static Visibility getFromViewVisibility(int visibility) {
         switch (visibility) {
             case View.VISIBLE:
                 return VISIBLE;

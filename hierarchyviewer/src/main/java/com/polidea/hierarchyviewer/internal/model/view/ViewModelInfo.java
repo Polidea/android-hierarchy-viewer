@@ -1,11 +1,13 @@
-package com.polidea.hierarchyviewer.internal.model;
+package com.polidea.hierarchyviewer.internal.model.view;
 
 
 import android.view.View;
 import com.google.gson.annotations.SerializedName;
+import com.polidea.hierarchyviewer.internal.logic.ConvertersContainer;
+import com.polidea.hierarchyviewer.internal.model.Visibility;
 import java.util.UUID;
 
-public class ViewModelInfo {
+public class ViewModelInfo implements ModelInfo {
 
     interface Metadata {
 
@@ -14,6 +16,9 @@ public class ViewModelInfo {
         String GENERATE_ID = "generateId";
         String ENABLED = "enabled";
         String VISIBILITY = "visibility";
+
+        String X = "x";
+        String Y = "y";
     }
 
     @SerializedName(Metadata.NAME)
@@ -31,11 +36,20 @@ public class ViewModelInfo {
     @SerializedName(Metadata.VISIBILITY)
     Visibility visibility;
 
-    public void setDataFromView(View view) {
+    @SerializedName(Metadata.X)
+    float x;
+
+    @SerializedName(Metadata.Y)
+    float y;
+
+    @Override
+    public void setDataFromView(View view, ConvertersContainer convertersContainer) {
         generateId = UUID.randomUUID().getMostSignificantBits();
         name = view.getClass().getSimpleName();
         id = view.getId();
         enabled = view.isEnabled();
         visibility = Visibility.getFromViewVisibility(view.getVisibility());
+        x = view.getX();
+        y = view.getY();
     }
 }

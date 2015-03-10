@@ -3,10 +3,12 @@ package com.polidea.hierarchyviewer.internal.logic;
 import android.view.View;
 import android.view.ViewGroup;
 import com.google.gson.Gson;
+import com.polidea.hierarchyviewer.internal.HierarchyViewerService;
 import com.polidea.hierarchyviewer.internal.model.HierarchyView;
 import com.polidea.hierarchyviewer.internal.model.ThrowableModel;
-import com.polidea.hierarchyviewer.internal.model.ViewGroupModelInfo;
-import com.polidea.hierarchyviewer.internal.model.ViewModelInfo;
+import com.polidea.hierarchyviewer.internal.model.view.ModelInfo;
+import com.polidea.hierarchyviewer.internal.model.view.ViewGroupModelInfo;
+import com.polidea.hierarchyviewer.internal.model.view.ViewModelInfo;
 import com.polidea.hierarchyviewer.internal.provider.HierarchyViewProvider;
 import java.util.List;
 import javax.inject.Inject;
@@ -14,15 +16,19 @@ import javax.inject.Singleton;
 
 public class HierarchyViewConverter {
 
-    private final HierarchyViewProvider hierarchyViewProvider;
+    @Inject
+    HierarchyViewProvider hierarchyViewProvider;
 
-    private final Gson gson;
+    @Inject
+    Gson gson;
+
+    @Inject
+    ConvertersContainer convertersContainer;
 
     @Singleton
     @Inject
-    HierarchyViewConverter(HierarchyViewProvider hierarchyViewProvider, Gson gson) {
-        this.hierarchyViewProvider = hierarchyViewProvider;
-        this.gson = gson;
+    HierarchyViewConverter() {
+        HierarchyViewerService.component().inject(this);
     }
 
     public String getHierarchyViewJson() {
@@ -39,16 +45,13 @@ public class HierarchyViewConverter {
 
     private String toJson(List<View> viewList) {
         final HierarchyView hierarchyView = new HierarchyView();
-        for (final View view : viewList) {
-            final ViewModelInfo viewModelInfo;
-            if (view instanceof ViewGroup) {
-                viewModelInfo = new ViewGroupModelInfo();
 
-            } else {
-                viewModelInfo = new ViewModelInfo();
-            }
-            viewModelInfo.setDataFromView(view);
-            hierarchyView.add(viewModelInfo);
+        for (final View view : viewList) {
+
+            ModelInfo modelInfo =convertersContainer.getModelInfoForClass(view.getClass());
+
+            modelInfo.setDataFromView(view, convertersContainer);
+            hierarchyView.add(modelInfo);
         }
         return gson.toJson(hierarchyView);
     }

@@ -2,6 +2,8 @@ package com.polidea.hierarchyviewer.internal.model;
 
 
 import com.google.gson.annotations.SerializedName;
+import com.polidea.hierarchyviewer.internal.model.view.ModelInfo;
+import com.polidea.hierarchyviewer.internal.model.view.ViewModelInfo;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -13,9 +15,9 @@ public class HierarchyView {
     }
 
     @SerializedName(Metadata.VIEW_LIST)
-    List<ViewModelInfo> list;
+    List<ModelInfo> list;
 
-    public void add(ViewModelInfo viewModelInfo) {
+    public void add(ModelInfo viewModelInfo) {
         if (list == null) {
             list = new LinkedList<>();
         }
