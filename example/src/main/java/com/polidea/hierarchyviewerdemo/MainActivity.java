@@ -1,8 +1,9 @@
 package com.polidea.hierarchyviewerdemo;
 
+import android.app.AlertDialog;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import com.polidea.hierarchyviewer.HierarchyViewer;
@@ -16,6 +17,12 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        new AlertDialog.Builder(this)
+                .setSingleChoiceItems(new CharSequence[]{"test1", "test2"}, 1, null)
+                .setPositiveButton("ok", null)
+                .setNegativeButton("Cancel", null)
+                .create()
+                .show();
     }
 
     @Override

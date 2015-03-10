@@ -10,7 +10,6 @@ import javax.inject.Inject;
 
 public class HierarchyViewerService extends Service {
 
-
     private static HierarchyViewerComponent component;
 
     @Inject
