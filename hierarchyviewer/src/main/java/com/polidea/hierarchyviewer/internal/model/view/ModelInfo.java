@@ -8,4 +8,5 @@ public interface ModelInfo {
 
     void setDataFromView(View view, ConvertersContainer convertersContainer);
 
+    void setLinkToFile(String linkToFile);
 }

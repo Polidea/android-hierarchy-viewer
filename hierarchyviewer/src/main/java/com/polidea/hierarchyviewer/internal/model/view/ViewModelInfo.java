@@ -19,6 +19,11 @@ public class ViewModelInfo implements ModelInfo {
 
         String X = "x";
         String Y = "y";
+
+        String WIDTH = "width";
+        String HEIGHT = "height";
+
+        String PATH_TO_FILE = "pathToFile";
     }
 
     @SerializedName(Metadata.NAME)
@@ -42,6 +47,16 @@ public class ViewModelInfo implements ModelInfo {
     @SerializedName(Metadata.Y)
     float y;
 
+    @SerializedName(Metadata.WIDTH)
+    float width;
+
+    @SerializedName(Metadata.HEIGHT)
+    float height;
+
+
+    @SerializedName(value = Metadata.PATH_TO_FILE)
+    String pathToFile;
+
     @Override
     public void setDataFromView(View view, ConvertersContainer convertersContainer) {
         generateId = UUID.randomUUID().getMostSignificantBits();
@@ -51,5 +66,12 @@ public class ViewModelInfo implements ModelInfo {
         visibility = Visibility.getFromViewVisibility(view.getVisibility());
         x = view.getX();
         y = view.getY();
+        width = view.getWidth();
+        height = view.getHeight();
+    }
+
+    @Override
+    public void setLinkToFile(String linkToFile) {
+        this.pathToFile = linkToFile;
     }
 }
