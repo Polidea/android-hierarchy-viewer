@@ -1,5 +1,6 @@
 package com.polidea.hierarchyviewer.internal.dependencyinjection;
 
+import android.app.NotificationManager;
 import android.content.Context;
 import android.view.WindowManager;
 import dagger.Module;
@@ -21,6 +22,8 @@ class SystemModule {
         return (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
     }
 
-
-
+    @Singleton
+    NotificationManager provideNotificationManager(){
+        return (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+    }
 }

@@ -1,6 +1,7 @@
 package com.polidea.hierarchyviewer.internal.dependencyinjection;
 
 import android.content.Context;
+import com.polidea.hierarchyviewer.Config;
 import com.polidea.hierarchyviewer.internal.HTTPServer;
 import com.polidea.hierarchyviewer.internal.HierarchyViewerService;
 import com.polidea.hierarchyviewer.internal.logic.HierarchyViewConverter;
@@ -28,4 +29,6 @@ public interface HierarchyViewerComponent {
     void inject(HTTPServer httpServer);
 
     void inject(HierarchyViewConverter hierarchyViewConverter);
+
+    void inject(Config config);
 }

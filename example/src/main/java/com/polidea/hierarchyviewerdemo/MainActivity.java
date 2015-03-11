@@ -6,6 +6,8 @@ import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.RatingBar;
+import com.polidea.hierarchyviewer.Config;
 import com.polidea.hierarchyviewer.HierarchyViewer;
 
 
@@ -28,13 +30,8 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                HierarchyViewer.start(MainActivity.this);
-            }
-        }, 2000);
+        HierarchyViewer.start(new Config.Builder(MainActivity.this)
+                .add(MyTextView.class, new MyTextViewModelInfo()).build());
     }
 
     @Override

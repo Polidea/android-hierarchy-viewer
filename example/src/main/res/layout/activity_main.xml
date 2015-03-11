@@ -12,6 +12,10 @@
             android:text="@string/hello_world"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/textView"/>
+    <com.polidea.hierarchyviewerdemo.MyTextView
+            android:text="Hello"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/textView2"/>
     <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

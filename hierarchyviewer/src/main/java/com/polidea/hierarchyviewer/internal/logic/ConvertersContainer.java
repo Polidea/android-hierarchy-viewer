@@ -7,11 +7,11 @@ import java.util.HashMap;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+@Singleton
 public class ConvertersContainer {
 
     private final HashMap<Class, Converter> converters;
 
-    @Singleton
     @Inject
     ConvertersContainer() {
         converters = new HashMap<>();
@@ -41,20 +41,7 @@ public class ConvertersContainer {
         return converter.getModelInfo();
     }
 
-    public  void addConverterForView(Class<? extends  View> clazz, Converter converter){
-        converters.put(clazz, converter);
-    }
-
-
-    public  void addConverterForView(Class<? extends  View> clazz){
-
-        //TODO create model for all element from view
-        //converters.put(clazz, new DefaultConverter(modelInfo));
-    }
-
-    public  void addConverterForView(Class<? extends  View> clazz, ModelInfo modelInfo){
+     public  void addConverterForView(Class<? extends  View> clazz, ModelInfo modelInfo){
         converters.put(clazz, new DefaultConverter(modelInfo));
     }
-
-
 }

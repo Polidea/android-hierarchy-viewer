@@ -2,6 +2,7 @@ package com.polidea.hierarchyviewer.internal.logic;
 
 import android.view.View;
 import com.google.gson.Gson;
+import com.polidea.hierarchyviewer.HierarchyViewer;
 import com.polidea.hierarchyviewer.internal.HierarchyViewerService;
 import com.polidea.hierarchyviewer.internal.model.HierarchyViewModel;
 import com.polidea.hierarchyviewer.internal.model.ThrowableModel;
@@ -30,7 +31,7 @@ public class HierarchyViewConverter {
     @Singleton
     @Inject
     HierarchyViewConverter() {
-        HierarchyViewerService.component().inject(this);
+        HierarchyViewer.component().inject(this);
     }
 
     public String getHierarchyViewJson() {

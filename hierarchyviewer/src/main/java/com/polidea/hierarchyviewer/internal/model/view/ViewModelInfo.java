@@ -13,6 +13,7 @@ public class ViewModelInfo implements ModelInfo {
 
         String NAME = "name";
         String ID = "id";
+        String ID_RES_NAME = "idResName";
         String GENERATE_ID = "generateId";
         String ENABLED = "enabled";
         String VISIBILITY = "visibility";
@@ -31,6 +32,9 @@ public class ViewModelInfo implements ModelInfo {
 
     @SerializedName(Metadata.ID)
     int id;
+
+    @SerializedName(Metadata.ID_RES_NAME)
+    String idResName;
 
     @SerializedName(Metadata.GENERATE_ID)
     long generateId;
@@ -53,7 +57,6 @@ public class ViewModelInfo implements ModelInfo {
     @SerializedName(Metadata.HEIGHT)
     float height;
 
-
     @SerializedName(value = Metadata.PATH_TO_FILE)
     String pathToFile;
 
@@ -62,6 +65,9 @@ public class ViewModelInfo implements ModelInfo {
         generateId = UUID.randomUUID().getMostSignificantBits();
         name = view.getClass().getSimpleName();
         id = view.getId();
+        if (id != ID_NOT_FOUND) {
+            idResName = view.getContext().getResources().getResourceEntryName(id);
+        }
         enabled = view.isEnabled();
         visibility = Visibility.getFromViewVisibility(view.getVisibility());
         x = view.getX();

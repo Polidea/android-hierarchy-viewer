@@ -3,6 +3,7 @@ package com.polidea.hierarchyviewer.internal;
 
 import android.util.Log;
 import com.polidea.hierarchyviewer.BuildConfig;
+import com.polidea.hierarchyviewer.HierarchyViewer;
 import com.polidea.hierarchyviewer.internal.logic.HierarchyViewConverter;
 import com.polidea.hierarchyviewer.internal.provider.FileUtilsProvider;
 import com.polidea.hierarchyviewer.internal.provider.ServerInfoProvider;
@@ -23,7 +24,7 @@ public class HTTPServer extends NanoHTTPD {
 
     public HTTPServer() {
         super(BuildConfig.PORT);
-        HierarchyViewerService.component().inject(this);
+        HierarchyViewer.component().inject(this);
     }
 
     @Override
