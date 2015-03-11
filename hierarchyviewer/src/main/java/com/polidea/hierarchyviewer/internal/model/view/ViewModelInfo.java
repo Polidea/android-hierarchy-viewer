@@ -2,9 +2,11 @@ package com.polidea.hierarchyviewer.internal.model.view;
 
 
 import android.view.View;
+import android.view.ViewGroup;
 import com.google.gson.annotations.SerializedName;
 import com.polidea.hierarchyviewer.internal.logic.ConvertersContainer;
 import com.polidea.hierarchyviewer.internal.model.Visibility;
+import com.polidea.hierarchyviewer.internal.model.layoutparams.LayoutParamsModelInfo;
 import java.util.UUID;
 
 public class ViewModelInfo implements ModelInfo {
@@ -25,6 +27,8 @@ public class ViewModelInfo implements ModelInfo {
         String HEIGHT = "height";
 
         String PATH_TO_FILE = "pathToFile";
+
+        String LAYOUT_PARAM = "layoutParam";
     }
 
     @SerializedName(Metadata.NAME)
@@ -57,8 +61,11 @@ public class ViewModelInfo implements ModelInfo {
     @SerializedName(Metadata.HEIGHT)
     float height;
 
-    @SerializedName(value = Metadata.PATH_TO_FILE)
+    @SerializedName(Metadata.PATH_TO_FILE)
     String pathToFile;
+
+    @SerializedName(Metadata.LAYOUT_PARAM)
+    LayoutParamsModelInfo layoutParamModelInfo;
 
     @Override
     public void setDataFromView(View view, ConvertersContainer convertersContainer) {
@@ -68,12 +75,19 @@ public class ViewModelInfo implements ModelInfo {
         if (id != ID_NOT_FOUND) {
             idResName = view.getContext().getResources().getResourceEntryName(id);
         }
+
         enabled = view.isEnabled();
         visibility = Visibility.getFromViewVisibility(view.getVisibility());
         x = view.getX();
         y = view.getY();
         width = view.getWidth();
         height = view.getHeight();
+        ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+        if (layoutParams != null) {
+            layoutParamModelInfo = convertersContainer.getLayoutParamsModelInfo(layoutParams.getClass());
+            layoutParamModelInfo.setDataFromLayoutParams(layoutParams);
+        }
+
     }
 
     @Override

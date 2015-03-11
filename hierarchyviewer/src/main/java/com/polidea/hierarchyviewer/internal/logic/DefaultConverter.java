@@ -2,7 +2,7 @@ package com.polidea.hierarchyviewer.internal.logic;
 
 import com.polidea.hierarchyviewer.internal.model.view.ModelInfo;
 
-public class DefaultConverter implements Converter<ModelInfo> {
+public class DefaultConverter implements ViewConverter<ModelInfo> {
 
     private ModelInfo modelInfo;
 

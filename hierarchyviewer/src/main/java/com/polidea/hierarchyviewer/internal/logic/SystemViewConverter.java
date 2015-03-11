@@ -2,11 +2,17 @@ package com.polidea.hierarchyviewer.internal.logic;
 
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.CheckedTextView;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
+import android.widget.RatingBar;
+import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 import com.polidea.hierarchyviewer.internal.model.view.ButtonModelInfo;
 import com.polidea.hierarchyviewer.internal.model.view.CheckBoxModelInfo;
 import com.polidea.hierarchyviewer.internal.model.view.CheckedTextViewModelInfo;
@@ -14,50 +20,58 @@ import com.polidea.hierarchyviewer.internal.model.view.CompoundButtonModelInfo;
 import com.polidea.hierarchyviewer.internal.model.view.ImageViewModelInfo;
 import com.polidea.hierarchyviewer.internal.model.view.ProgressBarModelInfo;
 import com.polidea.hierarchyviewer.internal.model.view.RadioButtonModelInfo;
+import com.polidea.hierarchyviewer.internal.model.view.RatingBarModelInfo;
 import com.polidea.hierarchyviewer.internal.model.view.SwitchModelInfo;
 import com.polidea.hierarchyviewer.internal.model.view.TextViewModelInfo;
 import com.polidea.hierarchyviewer.internal.model.view.ToggleButtonModelInfo;
 import com.polidea.hierarchyviewer.internal.model.view.ViewGroupModelInfo;
 import com.polidea.hierarchyviewer.internal.model.view.ViewModelInfo;
 
-public enum SystemConverter implements Converter {
+public enum SystemViewConverter implements ViewConverter {
 
-    TOGGLE_BUTTON(CheckedTextView.class) {
+    RATING_BAR(RatingBar.class) {
+        @Override
+        public RatingBarModelInfo getModelInfo() {
+            return new RatingBarModelInfo();
+        }
+    },
+
+    TOGGLE_BUTTON(ToggleButton.class) {
         @Override
         public ToggleButtonModelInfo getModelInfo() {
             return new ToggleButtonModelInfo();
         }
     },
 
-    SWITCH(CheckedTextView.class) {
+    SWITCH(Switch.class) {
         @Override
         public SwitchModelInfo getModelInfo() {
             return new SwitchModelInfo();
         }
     },
 
-    RADIO_BUTTON(CheckedTextView.class) {
+    RADIO_BUTTON(RadioButton.class) {
         @Override
         public RadioButtonModelInfo getModelInfo() {
             return new RadioButtonModelInfo();
         }
     },
 
-    CHECK_BOX(CheckedTextView.class) {
+    CHECK_BOX(CheckBox.class) {
         @Override
         public CheckBoxModelInfo getModelInfo() {
             return new CheckBoxModelInfo();
         }
     },
 
-    COMPOUND_BUTTON(CheckedTextView.class) {
+    COMPOUND_BUTTON(CompoundButton.class) {
         @Override
         public CompoundButtonModelInfo getModelInfo() {
             return new CompoundButtonModelInfo();
         }
     },
 
-    BUTTON(CheckedTextView.class) {
+    BUTTON(Button.class) {
         @Override
         public ButtonModelInfo getModelInfo() {
             return new ButtonModelInfo();
@@ -106,9 +120,9 @@ public enum SystemConverter implements Converter {
         }
     };
 
-    SystemConverter(Class clazz) {
+    SystemViewConverter(Class clazz) {
         this.clazz = clazz;
     }
 
-    Class clazz;
+    Class<? extends View> clazz;
 }
