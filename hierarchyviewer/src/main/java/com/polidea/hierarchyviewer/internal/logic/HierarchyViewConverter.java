@@ -1,16 +1,15 @@
 package com.polidea.hierarchyviewer.internal.logic;
 
 import android.view.View;
-import android.view.ViewGroup;
 import com.google.gson.Gson;
 import com.polidea.hierarchyviewer.internal.HierarchyViewerService;
-import com.polidea.hierarchyviewer.internal.model.HierarchyView;
+import com.polidea.hierarchyviewer.internal.model.HierarchyViewModel;
 import com.polidea.hierarchyviewer.internal.model.ThrowableModel;
 import com.polidea.hierarchyviewer.internal.model.view.ModelInfo;
-import com.polidea.hierarchyviewer.internal.model.view.ViewGroupModelInfo;
-import com.polidea.hierarchyviewer.internal.model.view.ViewModelInfo;
+import com.polidea.hierarchyviewer.internal.provider.FileUtilsProvider;
 import com.polidea.hierarchyviewer.internal.provider.HierarchyViewProvider;
 import java.util.List;
+import java.util.UUID;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -24,6 +23,9 @@ public class HierarchyViewConverter {
 
     @Inject
     ConvertersContainer convertersContainer;
+
+    @Inject
+    FileUtilsProvider fileUtilsProvider;
 
     @Singleton
     @Inject
@@ -44,13 +46,16 @@ public class HierarchyViewConverter {
     }
 
     private String toJson(List<View> viewList) {
-        final HierarchyView hierarchyView = new HierarchyView();
+        final HierarchyViewModel hierarchyView = new HierarchyViewModel();
 
         for (final View view : viewList) {
 
-            ModelInfo modelInfo =convertersContainer.getModelInfoForClass(view.getClass());
-
+            ModelInfo modelInfo = convertersContainer.getModelInfoForClass(view.getClass());
             modelInfo.setDataFromView(view, convertersContainer);
+            String fileName = UUID.randomUUID().toString();
+            if (fileUtilsProvider.saveViewInFile(view, fileName)) {
+                modelInfo.setLinkToFile(fileName);
+            }
             hierarchyView.add(modelInfo);
         }
         return gson.toJson(hierarchyView);
