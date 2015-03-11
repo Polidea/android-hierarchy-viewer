@@ -11,11 +11,62 @@
     <TextView
             android:text="@string/hello_world"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" android:id="@+id/textView"/>
     <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/abc_ic_ab_back_mtrl_am_alpha"
             android:id="@+id/imageView" android:layout_alignParentBottom="true" android:layout_centerHorizontal="true" android:layout_marginBottom="142dp"/>
+    <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New RadioButton"
+            android:id="@+id/radioButton" android:layout_centerVertical="true" android:layout_toLeftOf="@+id/imageView"
+            android:layout_toStartOf="@+id/imageView"/>
+    <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New RadioButton"
+            android:id="@+id/radioButton2"
+            android:layout_above="@+id/radioButton" android:layout_alignRight="@+id/checkBox" android:layout_alignEnd="@+id/checkBox"/>
+    <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New CheckBox"
+            android:id="@+id/checkBox" android:layout_above="@+id/radioButton" android:layout_alignLeft="@+id/radioButton"
+            android:layout_alignStart="@+id/radioButton" android:layout_marginBottom="64dp"/>
+    <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Switch"
+            android:id="@+id/switch1" android:layout_alignBottom="@+id/imageView" android:layout_alignLeft="@+id/radioButton"
+            android:layout_alignStart="@+id/radioButton"/>
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView2" android:layout_alignParentBottom="true" android:layout_alignParentLeft="true" android:layout_alignParentStart="true"/>
+    <SeekBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/seekBar" android:layout_above="@+id/imageView2" android:layout_toRightOf="@+id/textView" android:layout_toEndOf="@+id/textView"/>
+    <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinner" android:layout_below="@+id/textView" android:layout_alignLeft="@+id/radioButton2"
+            android:layout_alignStart="@+id/radioButton2"/>
+    <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ratingBar" android:layout_below="@+id/switch1" android:layout_alignLeft="@+id/switch1" android:layout_alignStart="@+id/switch1"/>
+    <ToggleButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New ToggleButton"
+            android:id="@+id/toggleButton" android:layout_below="@+id/spinner" android:layout_centerHorizontal="true"/>
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText" android:layout_below="@+id/radioButton" android:layout_toRightOf="@+id/imageView2"
+            android:layout_toEndOf="@+id/imageView2"/>
 
 </RelativeLayout>
