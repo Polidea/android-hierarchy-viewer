@@ -1,11 +1,14 @@
 package com.polidea.hierarchyviewer.internal.dependencyinjection;
 
 import android.content.Context;
-import com.polidea.hierarchyviewer.internal.HTTPServer;
+
 import com.polidea.hierarchyviewer.internal.provider.ServerInfoProvider;
+import com.polidea.hierarchyviewer.internal.provider.WebServer;
+
+import javax.inject.Singleton;
+
 import dagger.Module;
 import dagger.Provides;
-import javax.inject.Singleton;
 
 @Module
 class ServerUtilsModule {
@@ -25,8 +28,8 @@ class ServerUtilsModule {
 
     @Singleton
     @Provides
-    HTTPServer provideHttpServer() {
-        return new HTTPServer();
+    WebServer provideWebServer() {
+        return new WebServer(context);
     }
 
 }

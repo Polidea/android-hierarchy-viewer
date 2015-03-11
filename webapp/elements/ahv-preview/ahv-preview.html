@@ -1,0 +1,71 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+<link rel="import" href="ahv-singleview.html">
+
+<polymer-element name="ahv-preview" attributes="views zoom">
+    <template>
+    <link rel="stylesheet" href="ahv-preview.css">
+        <div id="container">
+        <template repeat="{{view in views}}">
+        <ahv-singleview view="{{view}}" index="{{1}}" scale="{{scale * zoom}}" origin="{{view | origin}}"></ahv-singleview>
+        </template>
+        </div>
+    </template>
+    <script type="text/javascript">
+        Polymer({
+            zoom: 1.0,
+            scale: 1.0,
+            attached: function() {
+                var self = this;
+                window.addEventListener("resize", function() { 
+                    self.resize.apply(self); 
+                });
+            },
+            domReady: function() {
+                this.resize();
+            },
+            viewsChanged: function() {
+                var self = this;
+                this.viewList = [];
+                var addToList = function(view) {
+                    self.viewList.push(view);
+                    if (view.children) {
+                        view.children.forEach(function(child) {
+                            addToList(child);
+                        });
+                    }
+                };
+                this.views.forEach(function(view) {
+                    addToList(view);
+                });
+                this.resize();
+            },
+            resize: function() {
+                if (this.viewList != null) {
+                    this.viewWidth = Math.max.apply(null, this.viewList.map(function(view) { return view.width }));
+                    this.viewHeight = Math.max.apply(null, this.viewList.map(function(view) { return view.height }));
+                    var width = this.$.container.offsetWidth;
+                    var height = this.$.container.offsetHeight;
+                    var aspect = this.viewWidth / this.viewHeight;
+                    if (width > height * aspect) {
+                        width = height * aspect;
+                    }
+                    else if (height > width * aspect) {
+                        height = width * aspect;
+                    }
+                    console.log("size ", width, height);
+                    this.scale =  width / this.viewWidth;
+                }
+                else {
+                    this.scale = 1.0;
+                }
+                console.log("scale ", this.scale);
+            },
+            origin: function(view) {
+                return {
+                    x: view.x,
+                    y: view.y
+                };
+            }
+        });
+    </script>
+</polymer-element>

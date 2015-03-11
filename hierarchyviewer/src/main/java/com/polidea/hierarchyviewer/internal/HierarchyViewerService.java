@@ -1,23 +1,21 @@
 package com.polidea.hierarchyviewer.internal;
 
 import android.app.Service;
-import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
+
 import com.polidea.hierarchyviewer.HierarchyViewer;
-import com.polidea.hierarchyviewer.internal.dependencyinjection.HierarchyViewerComponent;
-import com.polidea.hierarchyviewer.internal.provider.FileUtilsProvider;
+import com.polidea.hierarchyviewer.internal.provider.WebServer;
+
 import java.io.IOException;
+
 import javax.inject.Inject;
 
 public class HierarchyViewerService extends Service {
 
 
     @Inject
-    HTTPServer server;
-
-    @Inject
-    FileUtilsProvider fileUtilsProvider;
+    WebServer server;
 
     @Override
     public void onCreate() {
@@ -27,8 +25,6 @@ public class HierarchyViewerService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        fileUtilsProvider.createCacheFolderIfNotExist();
-        fileUtilsProvider.clearCacheFolder();
         try {
             server.start();
         } catch (IOException e) {
@@ -39,9 +35,9 @@ public class HierarchyViewerService extends Service {
 
     @Override
     public void onDestroy() {
+        super.onDestroy();
         server.stop();
     }
-
 
     @Override
     public IBinder onBind(Intent intent) {

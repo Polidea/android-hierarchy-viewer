@@ -1,0 +1,48 @@
+body {
+    background: #fafafa;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #333;
+}
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+ahv-views {
+    min-width: 300px;
+}
+
+core-toolbar {
+    color: #FAFAFA;
+    background-color: #009688;
+
+    core-label {
+        font-size: 0.8em;
+    }
+    paper-checkbox {
+        margin: 0 4px;
+    }
+    paper-checkbox::shadow {
+        #checkbox {
+            border-color: #FAFAFA;
+        }
+
+        #checkbox.checked {
+            background-color: #FAFAFA;
+            border-color: #FAFAFA;
+        }
+
+        #checkmark {
+            border-color: #009688;
+        }
+    }
+}
+
+.container {
+    position: relative;
+    height: 100%;
+}
+
+

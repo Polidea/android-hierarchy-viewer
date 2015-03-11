@@ -37,6 +37,39 @@ android {
     }
 }
 
+android.libraryVariants.all { variant ->
+    def buildWebappTask = tasks.create(name: "buildWebappFor${variant.name.capitalize()}", type: Exec) {
+        onlyIf {
+            project.properties["buildWebapp"]
+        }
+        description "Builds webapp content with grunt"
+        doFirst {
+            println '''
+               ______                 __
+              / ____/______  ______  / /_
+             / / __/ ___/ / / / __ \\/ __/
+            / /_/ / /  / /_/ / / / / /_
+            \\____/_/   \\__,_/_/ /_/\\__/
+
+            '''
+        }
+        doLast {
+            println '''
+              ________      ____  ____
+             /_  __/ /   _ / __ \\/ __ \\
+              / / / /   (_) / / / /_/ /
+             / / / /____ / /_/ / _, _/    Grunt is done.
+            /_/ /_____( )_____/_/ |_|
+                      |/
+            '''
+        }
+        workingDir rootDir
+        commandLine "grunt", "build"
+    }
+
+    project.tasks["process${variant.name.capitalize()}Resources"].dependsOn buildWebappTask
+}
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.nanohttpd:nanohttpd:2.1.1'

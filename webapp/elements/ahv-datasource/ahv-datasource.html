@@ -1,0 +1,18 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../../bower_components/core-ajax/core-ajax.html">
+
+<polymer-element name="ahv-datasource" attributes="data">
+    <template>
+    <core-ajax auto url="/api/hierarchy" handleAs="json" on-core-response="{{dataLoaded}}"></core-ajax>
+    </template>
+    <script type="text/javascript">
+        Polymer({
+            ready: function() {
+                //this.data = JSON.parse('{"viewList":[{"children":[{"children":[{"name":"ViewStub","visibility":"gone","generateId":-3659348584553951757,"enabled":true,"height":0.0,"id":16909166,"width":0.0,"x":0.0,"y":0.0},{"children":[{"children":[{"children":[{"children":[{"text":"Hello world!","name":"TextView","visibility":"visible","generateId":-5217916085710075615,"enabled":true,"height":57.0,"id":-1,"width":221.0,"x":48.0,"y":48.0},{"scaleType":"FIT_CENTER","name":"ImageView","visibility":"visible","generateId":-4852850760594406687,"enabled":true,"height":72.0,"id":2131296319,"width":72.0,"x":504.0,"y":987.0}],"countChildren":2,"name":"RelativeLayout","visibility":"visible","generateId":-1045918542069348328,"enabled":true,"height":1533.0,"id":-1,"width":1080.0,"x":0.0,"y":0.0}],"countChildren":1,"name":"NativeActionModeAwareLayout","visibility":"visible","generateId":3354967351314436059,"enabled":true,"height":1533.0,"id":16908290,"width":1080.0,"x":0.0,"y":168.0},{"children":[{"children":[{"text":"HierarchyViewerDemo","name":"TextView","visibility":"visible","generateId":-7189151977695197458,"enabled":true,"height":81.0,"id":-1,"width":596.0,"x":48.0,"y":43.0},{"children":[{"scaleType":"CENTER","name":"OverflowMenuButton","visibility":"visible","generateId":5043500227174680856,"enabled":true,"height":144.0,"id":-1,"width":108.0,"x":0.0,"y":12.0}],"countChildren":1,"name":"ActionMenuView","visibility":"visible","generateId":2289875631822227307,"enabled":true,"height":168.0,"id":-1,"width":108.0,"x":972.0,"y":0.0}],"countChildren":2,"name":"Toolbar","visibility":"visible","generateId":3691008265936457209,"enabled":true,"height":168.0,"id":2131296305,"width":1080.0,"x":0.0,"y":0.0},{"countChildren":0,"name":"ActionBarContextView","visibility":"gone","generateId":3618567048025820251,"enabled":true,"height":0.0,"id":2131296306,"width":0.0,"x":0.0,"y":0.0}],"countChildren":2,"name":"ActionBarContainer","visibility":"visible","generateId":5758423929272487512,"enabled":true,"height":168.0,"id":2131296304,"width":1080.0,"x":0.0,"y":0.0}],"countChildren":2,"name":"ActionBarOverlayLayout","visibility":"visible","generateId":8666820155400343417,"enabled":true,"height":1701.0,"id":2131296303,"width":1080.0,"x":0.0,"y":0.0}],"countChildren":1,"name":"FrameLayout","visibility":"visible","generateId":-946590582703764601,"enabled":true,"height":1701.0,"id":-1,"width":1080.0,"x":0.0,"y":75.0}],"countChildren":2,"name":"LinearLayout","visibility":"visible","generateId":-8982346367005933242,"enabled":true,"height":1776.0,"id":-1,"width":1080.0,"x":0.0,"y":0.0},{"name":"View","visibility":"visible","generateId":1639796888323180120,"enabled":true,"height":75.0,"id":16908335,"width":1080.0,"x":0.0,"y":0.0},{"name":"View","visibility":"visible","generateId":-766322524355605427,"enabled":true,"height":144.0,"id":16908336,"width":1080.0,"x":0.0,"y":1776.0}],"countChildren":3,"name":"DecorView","visibility":"visible","generateId":-9122973378562208356,"enabled":true,"height":1920.0,"id":-1,"width":1080.0,"x":0.0,"y":0.0}]}').viewList;
+            },
+            dataLoaded: function(e) {
+                this.data = e.detail.response.viewList;
+            }
+        });
+    </script>
+</polymer-element>

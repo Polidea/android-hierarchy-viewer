@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <title>yo-list-basic</title>
+
+  <script src="../../bower_components/webcomponentsjs/webcomponents.js"></script>
+  <script src="../../bower_components/web-component-tester/browser.js"></script>
+
+  <!-- Step 1: import the element to test -->
+  <link rel="import" href="../elements/yo-list/yo-list.html">
+
+</head>
+<body>
+
+  <yo-list id="fixture"></yo-list>
+
+  <script>
+    suite('yo-list', function() {
+      test('Item lengths should be equalled', function(done) {
+        // Test a property
+        var el = document.querySelector('yo-list');
+        el.items.push('Foo');
+
+        // Data bindings will stamp out new DOM asynchronously
+        // so wait to check for updates
+        flush(function() {
+          var listItems = el.shadowRoot.querySelectorAll('li');
+          assert.equal(el.items.length, listItems.length);
+          done();
+        });
+      })
+    });
+  </script>
+
+</body>
+</html>

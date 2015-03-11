@@ -1,0 +1,20 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+<link rel="import" href="ahv-view.html">
+
+<polymer-element name="ahv-views" attributes="views">
+    <template>
+        <link rel="stylesheet" href="ahv-views.css">
+        <ul>
+        <template repeat="{{view in views}}">
+        <ahv-view view="{{view}}"></ahv-view>
+        </template>
+        </ul>
+    </template>
+    <script type="text/javascript">
+        Polymer({
+            views: null,
+            ready: function() {
+            }
+        });
+    </script>
+</polymer-element>

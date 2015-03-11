@@ -35,7 +35,6 @@ public class HierarchyViewConverter {
     }
 
     public String getHierarchyViewJson() {
-
         try {
             List<View> list = hierarchyViewProvider.getViewList();
             return toJson(list);

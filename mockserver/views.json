@@ -1,0 +1,19 @@
+{
+    "children": [
+        {
+            "name": "TextView"
+        },
+        {
+            "children": [
+                {
+                    "name": "ImageView"
+                },
+                {
+                    "name": "Button"
+                }
+            ],
+            "name": "RelativeLayout"
+        }
+    ],
+    "name": "LinearLayout"
+}

@@ -1,0 +1,77 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../../bower_components/core-style/core-style.html">
+
+<polymer-element name="ahv-singleview" attributes="view index scale screen origin">
+<template>
+    <style>
+        :host {
+            position: absolute;
+            left: {{x}}px;
+            top: {{y}}px;
+            width: {{width}}px;
+            height: {{height + 1}}px;
+            background-repeat: no-repeat;
+            background-size: 100%;
+        }
+        .outline {
+            border: 1px solid #009688;
+        }
+        .outline:hover {
+            background: rgba(0, 150, 136, 0.5);
+        }
+    </style>
+    <!--<span>{{view.x}} {{view.y}} {{view.width}} {{view.height}}</span>-->
+    <div fit class="outline"></div>
+    <template repeat="{{child in view.children}}">
+        <ahv-singleview view="{{child}}" index="{{ nextIndex }}" scale="{{scale}}" origin="{{ child | addOrigin }}"></ahv-singleview>
+    </template>
+</template>
+<script type="text/javascript">
+    Polymer({
+        x: 0,
+        y: 0,
+        width: 0,
+        height: 0,
+        viewChanged: function() {
+            if (this.view.pathToFile) {
+                this.style["backgroundImage"] = "url('/api/screen/" + this.view.pathToFile + "')";
+            }
+        },
+        indexChanged: function() {
+            this.nextIndex = this.index + 1;
+            this.style["zIndex"] = this.index;
+        },
+        scaleChanged: function() {
+            this.x = this.view.x * this.scale;
+            this.y = this.view.y * this.scale;
+            this.width = this.view.width * this.scale;
+            this.height = this.view.height * this.scale;
+        },
+        get size() {
+            return {
+                left: this.x,
+                top: this.y,
+                width: this.width + "px",
+                height: this.height + "px"
+            };
+        },
+        get absolute() {
+            return {
+                x: this.origin.x,
+                y : this.origin.y,
+                width: this.view.width,
+                height: this.view.height
+            };
+        },
+        get screenPath() {
+            return this.view.pathToFile;
+        },
+        addOrigin: function(view) {
+            return {
+                x: this.origin.x + view.x,
+                y: this.origin.y + view.y
+            };
+        }
+    });
+</script>
+</polymer-element>

@@ -1,0 +1,1 @@
+.element{position:absolute;border:1px solid red}.element span{display:none}.element:hover{background:#666}.element:hover span{display:block}

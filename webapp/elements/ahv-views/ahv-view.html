@@ -1,0 +1,45 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../../bower_components/core-collapse/core-collapse.html">
+<link rel="import" href="../../../bower_components/core-localstorage/core-localstorage.html">
+<link rel="import" href="../../../bower_components/core-icons/core-icons.html">
+<link rel="import" href="../../../bower_components/core-icons/hardware-icons.html">
+<link rel="import" href="../../../bower_components/paper-item/paper-item.html">
+
+<polymer-element name="ahv-view" attributes="view">
+    <template>
+        <style type="text/css">
+ 
+        </style>
+        <li on-click="{{toggle}}">
+        <paper-item>
+        <span flex>{{view.name}}</span>
+        <template if="{{view.children}}">
+        <core-icon icon="{{ expanded ? 'hardware:keyboard-arrow-down' : 'hardware:keyboard-arrow-right'}}" role="img"></core-icon>
+        </template>
+        </paper-item>
+        </li>
+        <template if="{{view.children}}">
+            <core-collapse id="collapse" opened="{{expanded || false}}">
+            <ul>
+                <template repeat="{{child in view.children}}">
+                <ahv-view view="{{child}}"></ahv-view>
+                </template>
+            </ul>
+            </core-collapse>
+        </template>
+        <core-localstorage id="storage" name="ahv-view-{{view.name}}-{{view.generateId}}-{{view.x}}-{{view.y}}-" value="{{expanded}}"></core-localstorage>
+    </template>
+    <script type="text/javascript">
+        Polymer({
+            ready: function() {
+            },
+            toggle: function() {
+                if (this.$.collapse) {
+                    this.$.collapse.toggle();
+                    this.$.storage.value = !this.$.storage.value;
+                    this.$.storage.save();
+                }
+            }
+        });
+    </script>
+</polymer-element>

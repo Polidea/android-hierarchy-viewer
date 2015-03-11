@@ -1,0 +1,15 @@
+.element {
+    position: absolute;
+    border: 1px solid red;
+}
+
+.element span {
+    display: none;
+}
+
+.element:hover {
+    background: #666;
+    span {
+       display: block;
+    }
+}

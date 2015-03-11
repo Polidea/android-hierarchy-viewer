@@ -2,9 +2,10 @@ package com.polidea.hierarchyviewer.internal.dependencyinjection;
 
 import android.content.Context;
 import com.polidea.hierarchyviewer.Config;
-import com.polidea.hierarchyviewer.internal.HTTPServer;
 import com.polidea.hierarchyviewer.internal.HierarchyViewerService;
 import com.polidea.hierarchyviewer.internal.logic.HierarchyViewConverter;
+import com.polidea.hierarchyviewer.internal.provider.WebServer;
+
 import dagger.Component;
 import javax.inject.Singleton;
 
@@ -26,9 +27,8 @@ public interface HierarchyViewerComponent {
 
     void inject(HierarchyViewerService hierarchyViewerService);
 
-    void inject(HTTPServer httpServer);
-
     void inject(HierarchyViewConverter hierarchyViewConverter);
 
     void inject(Config config);
+    void inject(WebServer server);
 }
