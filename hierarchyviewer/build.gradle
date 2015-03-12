@@ -22,10 +22,10 @@ android {
     }
     buildTypes {
         debug {
-            buildConfigField 'int', 'PORT', '5050'
+            buildConfigField 'int', 'PORT', '4000'
         }
         release {
-            buildConfigField 'int', 'PORT', '5050'
+            buildConfigField 'int', 'PORT', '4000'
             minifyEnabled false
             signingConfig android.signingConfigs.hierarchyViewerConfig
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'

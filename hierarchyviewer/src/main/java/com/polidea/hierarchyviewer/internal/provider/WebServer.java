@@ -2,6 +2,7 @@ package com.polidea.hierarchyviewer.internal.provider;
 
 import android.content.Context;
 
+import com.polidea.hierarchyviewer.BuildConfig;
 import com.polidea.hierarchyviewer.HierarchyViewer;
 import com.polidea.hierarchyviewer.internal.logic.HierarchyViewConverter;
 
@@ -22,7 +23,6 @@ import static fi.iki.elonen.NanoHTTPD.Response.Status.OK;
 public class WebServer extends NanoHTTPD {
 
     private static final String WEBAPP_PATH = "webapp";
-    private static final int PORT = 4000;
 
     public static final String
             MIME_PLAINTEXT = "text/plain",
@@ -32,7 +32,10 @@ public class WebServer extends NanoHTTPD {
             MIME_PNG = "image/png",
             MIME_JSON = "application/json",
             MIME_DEFAULT_BINARY = "application/octet-stream",
-            MIME_XML = "text/xml";
+            MIME_XML = "text/xml",
+            API_HIERARCHY = "/api/hierarchy",
+            API_SCREEN = "/api/screen/";
+
 
     @Inject
     HierarchyViewConverter hierarchyViewConverter;
@@ -43,9 +46,9 @@ public class WebServer extends NanoHTTPD {
     private final Context context;
 
     public WebServer(Context ctx) {
-        super(PORT);
+        super(BuildConfig.PORT);
         context = ctx;
-        System.out.println("Started with IP: " + new ServerInfoProvider(context).getIpAddress());
+        System.out.println("Started with IP: " + new ServerInfoProvider(context).getIpAddress()+":"+ BuildConfig.PORT);
         HierarchyViewer.component().inject(this);
     }
 
@@ -63,11 +66,11 @@ public class WebServer extends NanoHTTPD {
         InputStream buffer;
         try {
             if (uri != null) {
-                if (uri.equals("/api/hierarchy")) {
+                if (uri.equals(API_HIERARCHY)) {
                     fileUtilsProvider.clearCacheFolder();
                     return new NanoHTTPD.Response(OK, MIME_JSON, hierarchyViewConverter.getHierarchyViewJson());
-                } else if (uri.startsWith("/api/screen/")) {
-                    String path = uri.replace("/api/screen/", "");
+                } else if (uri.startsWith(API_SCREEN)) {
+                    String path = uri.replace(API_SCREEN, "");
                     buffer = new FileInputStream(fileUtilsProvider.getFile(path));
                     Response streamResponse = new Response(OK, MIME_PNG, buffer);
                     streamResponse.addHeader("Connection", "Keep-alive");
@@ -92,7 +95,6 @@ public class WebServer extends NanoHTTPD {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return null;
     }
 
