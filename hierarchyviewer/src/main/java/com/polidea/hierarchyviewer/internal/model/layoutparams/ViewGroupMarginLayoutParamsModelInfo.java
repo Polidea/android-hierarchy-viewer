@@ -39,9 +39,9 @@ public class ViewGroupMarginLayoutParamsModelInfo extends ViewGroupLayoutParamsM
     LayoutDirection layoutDirection;
 
     @Override
-    public void setDataFromLayoutParams(ViewGroup.LayoutParams viewGroup) {
-        super.setDataFromLayoutParams(viewGroup);
-        ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) viewGroup;
+    public void setDataFromLayoutParams(ViewGroup.LayoutParams viewGroupLayoutParams) {
+        super.setDataFromLayoutParams(viewGroupLayoutParams);
+        ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) viewGroupLayoutParams;
         bottomMargin = marginLayoutParams.bottomMargin;
         leftMargin = marginLayoutParams.leftMargin;
         rightMargin = marginLayoutParams.rightMargin;

@@ -23,9 +23,9 @@ public class ViewGroupLayoutParamsModelInfo implements LayoutParamsModelInfo {
     int width;
 
     @Override
-    public void setDataFromLayoutParams(ViewGroup.LayoutParams viewGroup) {
-        name = viewGroup.getClass().getCanonicalName();
-        height = viewGroup.height;
-        width = viewGroup.width;
+    public void setDataFromLayoutParams(ViewGroup.LayoutParams viewGroupLayoutParams) {
+        name = viewGroupLayoutParams.getClass().getCanonicalName();
+        height = viewGroupLayoutParams.height;
+        width = viewGroupLayoutParams.width;
     }
 }

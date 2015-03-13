@@ -15,9 +15,9 @@ public class RelativeLayoutParamsModelInfo extends ViewGroupMarginLayoutParamsMo
     int[] rules;
 
     @Override
-    public void setDataFromLayoutParams(ViewGroup.LayoutParams viewGroup) {
-        super.setDataFromLayoutParams(viewGroup);
-        RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) viewGroup;
+    public void setDataFromLayoutParams(ViewGroup.LayoutParams viewGroupLayoutParams) {
+        super.setDataFromLayoutParams(viewGroupLayoutParams);
+        RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) viewGroupLayoutParams;
         rules = layoutParams.getRules();
     }
 }

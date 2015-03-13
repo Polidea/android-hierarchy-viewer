@@ -34,8 +34,5 @@ public enum LayoutGravity {
             default:
                 return NONE;
         }
-
     }
-
-
 }

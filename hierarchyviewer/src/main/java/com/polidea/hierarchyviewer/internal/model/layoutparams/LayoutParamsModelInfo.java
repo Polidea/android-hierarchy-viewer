@@ -4,5 +4,5 @@ import android.view.ViewGroup;
 
 public interface LayoutParamsModelInfo {
 
-    void setDataFromLayoutParams(ViewGroup.LayoutParams viewGroup);
+    void setDataFromLayoutParams(ViewGroup.LayoutParams viewGroupLayoutParams);
 }
