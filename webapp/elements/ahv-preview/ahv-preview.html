@@ -14,11 +14,15 @@
         Polymer({
             zoom: 1.0,
             scale: 1.0,
-            attached: function() {
+            ready: function() {
                 var self = this;
                 window.addEventListener("resize", function() { 
                     self.resize.apply(self); 
                 });
+                //window.addEventListener("view-selected", function(e) {
+                //    self.selectedView = e.detail;
+                //});
+                this.resize();
             },
             domReady: function() {
                 this.resize();
@@ -58,7 +62,6 @@
                 else {
                     this.scale = 1.0;
                 }
-                console.log("scale ", this.scale);
             },
             origin: function(view) {
                 return {

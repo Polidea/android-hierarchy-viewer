@@ -7,8 +7,6 @@ module.exports = function (grunt) {
   require('load-grunt-tasks')(grunt);
   grunt.loadNpmTasks('web-component-tester');
   
-  console.log(grunt.option("output"));
-  
   // configurable paths
   var yeomanConfig = {
     app: 'webapp',

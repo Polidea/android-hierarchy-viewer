@@ -1,0 +1,25 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+<link rel="import" href="ahv-cell.html">
+
+<polymer-element name="ahv-list" attributes="views selectedView">
+    <template>
+        <link rel="stylesheet" href="ahv-list.css">
+        <ul>
+        <template repeat="{{view in views}}">
+        <ahv-cell view="{{view}}"></ahv-cell>
+        </template>
+        </ul>
+    </template>
+    <script type="text/javascript">
+        Polymer({
+            views: null,
+            selectedView: null,
+            ready: function() {
+                var self = this;
+                window.addEventListener("view-selected", function(e) {
+                    self.selectedView = e.detail;
+                }); 
+            }
+        });
+    </script>
+</polymer-element>

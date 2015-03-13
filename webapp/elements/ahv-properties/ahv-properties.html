@@ -1,0 +1,16 @@
+
+<polymer-element name="ahv-properties" attributes="view">
+    <template>
+        <template repeat="{{key in keys}}">
+        <div>{{ key }} - {{ view[key] }}</div>
+        </template>
+    </template>
+    <script type="text/javascript">
+    Polymer({
+        view: null,
+        viewChanged: function() {
+            this.keys = Object.keys(this.view);
+        }
+    });
+    </script>
+</polymer-element>

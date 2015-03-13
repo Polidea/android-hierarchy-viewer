@@ -7,7 +7,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/gorilla/mux"
+	"github.com/zenazn/goji/web"
 )
 
 const jsonFilename = "views.json"
@@ -43,14 +43,22 @@ func ViewHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprint(w, string(bs))
 }
 
+func ScreenHandler(w http.ResponseWriter, r *http.Request) {
+	params := r.URL.Query()
+	fmt.Println(params.Get("{path}"))
+	fmt.Println(params.Get(":path"))
+	fmt.Println(params.Get("path"))
+}
+
 func ReturnError(w http.ResponseWriter, err error) {
 	fmt.Fprint(w, "{\"error\": \"%v\"}", err)
 }
 
 func main() {
-	r := mux.NewRouter()
-	r.HandleFunc("/", HomeHandler)
-	r.HandleFunc("/views", ViewHandler)
+	r := web.New()
+	r.Get("/", HomeHandler)
+	r.Get("/api/hierarchy", ViewHandler)
+	r.Get("/api/screen/:path", ScreenHandler)
 	http.Handle("/", r)
 	http.ListenAndServe("localhost:3000", nil)
 }

@@ -23,7 +23,7 @@
     <!--<span>{{view.x}} {{view.y}} {{view.width}} {{view.height}}</span>-->
     <div fit class="outline"></div>
     <template repeat="{{child in view.children}}">
-        <ahv-singleview view="{{child}}" index="{{ nextIndex }}" scale="{{scale}}" origin="{{ child | addOrigin }}"></ahv-singleview>
+        <ahv-singleview view="{{child}}" index="{{ nextIndex }}" scale="{{scale}}" origin="{{child | addOrigin}}"></ahv-singleview>
     </template>
 </template>
 <script type="text/javascript">

@@ -5,12 +5,12 @@
 <link rel="import" href="../../../bower_components/core-icons/hardware-icons.html">
 <link rel="import" href="../../../bower_components/paper-item/paper-item.html">
 
-<polymer-element name="ahv-view" attributes="view">
+<polymer-element name="ahv-cell" attributes="view">
     <template>
         <style type="text/css">
  
         </style>
-        <li on-click="{{toggle}}">
+        <li on-tap="{{toggle}}">
         <paper-item>
         <span flex>{{view.name}}</span>
         <template if="{{view.children}}">
@@ -22,7 +22,7 @@
             <core-collapse id="collapse" opened="{{expanded || false}}">
             <ul>
                 <template repeat="{{child in view.children}}">
-                <ahv-view view="{{child}}"></ahv-view>
+                <ahv-cell view="{{child}}"></ahv-cell>
                 </template>
             </ul>
             </core-collapse>
@@ -34,11 +34,15 @@
             ready: function() {
             },
             toggle: function() {
+                this.select();
                 if (this.$.collapse) {
                     this.$.collapse.toggle();
                     this.$.storage.value = !this.$.storage.value;
                     this.$.storage.save();
                 }
+            },
+            select: function() {
+                this.fire("view-selected", this.view);
             }
         });
     </script>

@@ -34,11 +34,9 @@
             </core-label>
         </core-toolbar>
         <div class="container" fit layout horizontal center-justified>
-                <ahv-views views="{{views}}"></ahv-views>
-                <ahv-preview flex views="{{views}}"></ahv-preview>
-                <div>
-                    Properties
-                </div>
+                <ahv-list views="{{views}}" selectedView="{{selectedView}}"></ahv-list>
+                <ahv-preview flex views="{{views}}" selectedView="{{selectedView}}"></ahv-preview>
+                <ahv-properties view="{{selectedView}}"></ahv-properties>
             </div>
         </div>
     </core-header-panel>
