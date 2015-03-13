@@ -2,6 +2,7 @@ package com.polidea.hierarchyviewer.internal.dependencyinjection;
 
 import android.content.Context;
 
+import com.polidea.hierarchyviewer.internal.provider.NotificationProvider;
 import com.polidea.hierarchyviewer.internal.provider.ServerInfoProvider;
 import com.polidea.hierarchyviewer.internal.provider.WebServer;
 
@@ -23,6 +24,12 @@ class ServerUtilsModule {
     @Provides
     ServerInfoProvider provideServerInfoProvider() {
         return new ServerInfoProvider(context);
+    }
+
+    @Singleton
+    @Provides
+    NotificationProvider provideNotificationProvider(){
+        return new NotificationProvider(context);
     }
 
 

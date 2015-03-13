@@ -23,7 +23,8 @@ class SystemModule {
     }
 
     @Singleton
-    NotificationManager provideNotificationManager(){
+    @Provides
+    NotificationManager provideNotificationManager() {
         return (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
     }
 }

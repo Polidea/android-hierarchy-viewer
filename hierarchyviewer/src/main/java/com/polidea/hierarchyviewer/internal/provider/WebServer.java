@@ -1,24 +1,16 @@
 package com.polidea.hierarchyviewer.internal.provider;
 
-import android.content.Context;
+import static fi.iki.elonen.NanoHTTPD.Response.Status.OK;
 
+import android.content.Context;
 import com.polidea.hierarchyviewer.BuildConfig;
 import com.polidea.hierarchyviewer.HierarchyViewer;
 import com.polidea.hierarchyviewer.internal.logic.HierarchyViewConverter;
-
+import fi.iki.elonen.NanoHTTPD;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.FileNameMap;
-import java.net.URLConnection;
-import java.util.Map;
-import java.util.Random;
-
 import javax.inject.Inject;
-
-import fi.iki.elonen.NanoHTTPD;
-
-import static fi.iki.elonen.NanoHTTPD.Response.Status.OK;
 
 public class WebServer extends NanoHTTPD {
 
@@ -43,12 +35,17 @@ public class WebServer extends NanoHTTPD {
     @Inject
     FileUtilsProvider fileUtilsProvider;
 
+    @Inject
+    NotificationProvider notificationProvider;
+
+    @Inject
+    ServerInfoProvider serverInfoProvider;
+
     private final Context context;
 
     public WebServer(Context ctx) {
         super(BuildConfig.PORT);
         context = ctx;
-        System.out.println("Started with IP: " + new ServerInfoProvider(context).getIpAddress()+":"+ BuildConfig.PORT);
         HierarchyViewer.component().inject(this);
     }
 
@@ -57,6 +54,16 @@ public class WebServer extends NanoHTTPD {
         super.start();
         fileUtilsProvider.createCacheFolderIfNotExist();
         fileUtilsProvider.clearCacheFolder();
+
+        notificationProvider.showServerAddressNotificationWithUrl();
+        System.out.println("Started with IP: " + serverInfoProvider.getIpAddress() + ":" + BuildConfig.PORT);
+
+    }
+
+    @Override
+    public void stop() {
+        super.stop();
+        notificationProvider.cancelServerAddressNotificationWithUrl();
     }
 
     @Override

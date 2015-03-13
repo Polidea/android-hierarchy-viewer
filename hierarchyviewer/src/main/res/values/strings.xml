@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">HierarchyViewer</string>
+    <string name="server_address">Server address</string>
 </resources>

@@ -3,9 +3,10 @@ package com.polidea.hierarchyviewerdemo;
 import android.view.View;
 import com.google.gson.annotations.SerializedName;
 import com.polidea.hierarchyviewer.internal.logic.ConvertersContainer;
+import com.polidea.hierarchyviewer.internal.model.view.TextViewModelInfo;
 import com.polidea.hierarchyviewer.internal.model.view.ViewModelInfo;
 
-public class MyTextViewModelInfo extends ViewModelInfo {
+public class MyTextViewModelInfo extends TextViewModelInfo {
 
     @SerializedName("myCustomItem")
     String myCustomItem;

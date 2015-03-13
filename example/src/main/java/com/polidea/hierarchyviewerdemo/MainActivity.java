@@ -31,7 +31,8 @@ public class MainActivity extends ActionBarActivity {
     protected void onResume() {
         super.onResume();
         HierarchyViewer.start(new Config.Builder(MainActivity.this)
-                .add(MyTextView.class, new MyTextViewModelInfo()).build());
+                .add(MyTextView.class, new MyTextViewModelInfo())
+                .build());
     }
 
     @Override
