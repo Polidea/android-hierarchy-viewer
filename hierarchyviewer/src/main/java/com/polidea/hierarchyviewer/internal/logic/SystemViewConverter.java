@@ -9,6 +9,7 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.RatingBar;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -20,6 +21,7 @@ import com.polidea.hierarchyviewer.internal.model.view.CompoundButtonModelInfo;
 import com.polidea.hierarchyviewer.internal.model.view.ImageViewModelInfo;
 import com.polidea.hierarchyviewer.internal.model.view.ProgressBarModelInfo;
 import com.polidea.hierarchyviewer.internal.model.view.RadioButtonModelInfo;
+import com.polidea.hierarchyviewer.internal.model.view.RadioGroupModelInfo;
 import com.polidea.hierarchyviewer.internal.model.view.RatingBarModelInfo;
 import com.polidea.hierarchyviewer.internal.model.view.SwitchModelInfo;
 import com.polidea.hierarchyviewer.internal.model.view.TextViewModelInfo;
@@ -29,6 +31,12 @@ import com.polidea.hierarchyviewer.internal.model.view.ViewModelInfo;
 
 public enum SystemViewConverter implements ViewConverter {
 
+    RADIO_GROUP(RadioGroup.class) {
+        @Override
+        public RadioGroupModelInfo getModelInfo() {
+            return new RadioGroupModelInfo();
+        }
+    },
     RATING_BAR(RatingBar.class) {
         @Override
         public RatingBarModelInfo getModelInfo() {
