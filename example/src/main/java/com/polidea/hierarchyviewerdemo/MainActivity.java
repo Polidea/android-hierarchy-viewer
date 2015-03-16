@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.widget.RatingBar;
 import com.polidea.hierarchyviewer.Config;
 import com.polidea.hierarchyviewer.HierarchyViewer;
+import com.polidea.hierarchyviewer.internal.model.layoutparams.LayoutDirection;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -33,6 +34,12 @@ public class MainActivity extends ActionBarActivity {
         HierarchyViewer.start(new Config.Builder(MainActivity.this)
                 .add(MyTextView.class, new MyTextViewModelInfo())
                 .build());
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        HierarchyViewer.shouldStop(this);
     }
 
     @Override

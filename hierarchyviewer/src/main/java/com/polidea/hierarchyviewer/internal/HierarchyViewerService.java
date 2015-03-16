@@ -3,16 +3,12 @@ package com.polidea.hierarchyviewer.internal;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
-
 import com.polidea.hierarchyviewer.HierarchyViewer;
 import com.polidea.hierarchyviewer.internal.provider.WebServer;
-
 import java.io.IOException;
-
 import javax.inject.Inject;
 
 public class HierarchyViewerService extends Service {
-
 
     @Inject
     WebServer server;
@@ -30,7 +26,7 @@ public class HierarchyViewerService extends Service {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return START_STICKY_COMPATIBILITY;
+        return START_NOT_STICKY;
     }
 
     @Override

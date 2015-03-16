@@ -20,4 +20,11 @@ public class HierarchyViewer {
     public static HierarchyViewerComponent component() {
         return component;
     }
+
+    public static void shouldStop(Context context){
+        context.stopService(new Intent(context, HierarchyViewerService.class));
+    }
+    public static boolean isComponent() {
+        return component != null;
+    }
 }

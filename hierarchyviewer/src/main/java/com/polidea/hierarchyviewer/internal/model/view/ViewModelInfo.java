@@ -13,6 +13,7 @@ public class ViewModelInfo implements ModelInfo {
 
     interface Metadata {
 
+        String PACKAGE_NAME = "packageName";
         String NAME = "name";
         String ID = "id";
         String ID_RES_NAME = "idResName";
@@ -30,6 +31,9 @@ public class ViewModelInfo implements ModelInfo {
 
         String LAYOUT_PARAM = "layoutParam";
     }
+
+    @SerializedName(Metadata.PACKAGE_NAME)
+    String packageName;
 
     @SerializedName(Metadata.NAME)
     String name;
@@ -69,6 +73,7 @@ public class ViewModelInfo implements ModelInfo {
 
     @Override
     public void setDataFromView(View view, ConvertersContainer convertersContainer) {
+        packageName = view.getClass().getPackage().getName();
         generateId = UUID.randomUUID().getMostSignificantBits();
         name = view.getClass().getSimpleName();
         id = view.getId();

@@ -62,8 +62,8 @@ public class WebServer extends NanoHTTPD {
 
     @Override
     public void stop() {
-        super.stop();
         notificationProvider.cancelServerAddressNotificationWithUrl();
+        super.stop();
     }
 
     @Override

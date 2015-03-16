@@ -36,7 +36,7 @@ public class NotificationProvider {
                 .setContentText(serverInfoProvider.getIpAddress() + ":" + BuildConfig.PORT)
                 .setOngoing(true)
                 .build();
-        notification.flags = Notification.DEFAULT_LIGHTS | Notification.FLAG_AUTO_CANCEL;
+        notification.flags = notification.flags | Notification.DEFAULT_LIGHTS;
         notificationManager.notify(NOTIFICATION_ID, notification);
     }
 
