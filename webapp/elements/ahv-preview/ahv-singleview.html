@@ -1,29 +1,22 @@
 <link rel="import" href="../../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../../bower_components/core-style/core-style.html">
 
-<polymer-element name="ahv-singleview" attributes="view index scale screen origin">
+<polymer-element name="ahv-singleview" attributes="view index scale origin highlightView">
 <template>
     <style>
         :host {
             position: absolute;
-            left: {{x}}px;
-            top: {{y}}px;
-            width: {{width}}px;
-            height: {{height + 1}}px;
             background-repeat: no-repeat;
             background-size: 100%;
         }
         .outline {
             border: 1px solid #009688;
         }
-        .outline:hover {
-            background: rgba(0, 150, 136, 0.5);
-        }
     </style>
     <!--<span>{{view.x}} {{view.y}} {{view.width}} {{view.height}}</span>-->
-    <div fit class="outline"></div>
+    <div fit class="outline" on-tap="{{select}}" on-mouseover="{{hover}}" on-mouseout="{{unhover}}"></div>
     <template repeat="{{child in view.children}}">
-        <ahv-singleview view="{{child}}" index="{{ nextIndex }}" scale="{{scale}}" origin="{{child | addOrigin}}"></ahv-singleview>
+    <ahv-singleview view="{{child}}" index="{{ nextIndex }}" scale="{{scale}}" origin="{{child | addOrigin}}" highlightView="{{highlightView}}"></ahv-singleview>
     </template>
 </template>
 <script type="text/javascript">
@@ -37,6 +30,14 @@
                 this.style["backgroundImage"] = "url('/api/screen/" + this.view.pathToFile + "')";
             }
         },
+        highlightViewChanged: function() {
+            if (this.highlightView.generateId === this.view.generateId) {
+                this.shadowRoot.querySelector(".outline").style["background"] = "rgba(0, 150, 136, 0.5)";
+            }
+            else {
+                this.shadowRoot.querySelector(".outline").style["background"] = "transparent";
+            }
+        },
         indexChanged: function() {
             this.nextIndex = this.index + 1;
             this.style["zIndex"] = this.index;
@@ -46,22 +47,14 @@
             this.y = this.view.y * this.scale;
             this.width = this.view.width * this.scale;
             this.height = this.view.height * this.scale;
+
+            this.applySize();
         },
-        get size() {
-            return {
-                left: this.x,
-                top: this.y,
-                width: this.width + "px",
-                height: this.height + "px"
-            };
-        },
-        get absolute() {
-            return {
-                x: this.origin.x,
-                y : this.origin.y,
-                width: this.view.width,
-                height: this.view.height
-            };
+        applySize: function() {
+            this.style["left"] = this.x + "px";
+            this.style["top"] = this.y + "px";
+            this.style["width"] = this.width + "px";
+            this.style["height"] = this.height + 1 + "px";
         },
         get screenPath() {
             return this.view.pathToFile;
@@ -71,6 +64,15 @@
                 x: this.origin.x + view.x,
                 y: this.origin.y + view.y
             };
+        },
+        select: function() {
+            this.fire("preview-selected", this.view);
+        },
+        hover: function() {
+            this.fire("preview-highlight", this.view);
+        },
+        unhover: function() {
+            this.fire("preview-highlight", null);
         }
     });
 </script>

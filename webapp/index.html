@@ -9,7 +9,7 @@
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
   <!-- build:css styles/main.css -->
-  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/main.css" shim-shadowdom>
   <!-- endbuild-->
 
   <!-- build:js bower_components/webcomponentsjs/webcomponents.min.js -->
@@ -24,7 +24,7 @@
 <body unresolved fullbleed layout vertical auto>
   <template is="auto-binding" id="app">
     <ahv-datasource data="{{views}}"></ahv-datasource>
-    <core-header-panel fit shadow>
+    <core-header-panel fit>
         <core-toolbar>
             <span>Views</span>
             <div flex></div>
@@ -33,10 +33,12 @@
                 <paper-checkbox for></paper-checkbox>
             </core-label>
         </core-toolbar>
-        <div class="container" fit layout horizontal center-justified>
-                <ahv-list views="{{views}}" selectedView="{{selectedView}}"></ahv-list>
-                <ahv-preview flex views="{{views}}" selectedView="{{selectedView}}"></ahv-preview>
-                <ahv-properties view="{{selectedView}}"></ahv-properties>
+        <div fit layout horizontal>
+            <ahv-list views="{{views}}" selectedView="{{selectedView}}" highlightView="{{highlightView}}"></ahv-list>
+            <div class="container" layout horizontal flex>
+                    <ahv-preview flex views="{{views}}" selectedView="{{selectedView}}" highlightView="{{highlightView}}"></ahv-preview>
+                    <ahv-properties flex view="{{selectedView}}"></ahv-properties>
+                </div>
             </div>
         </div>
     </core-header-panel>

@@ -4,14 +4,18 @@ body {
     color: #333;
 }
 
-* {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+ahv-list {
+    min-width: 20%;
 }
 
-ahv-list, ahv-properties {
-    min-width: 20%;
+.container {
+    position: fixed;
+    height: 90%;
+    width: 100%;
+
+    ahv-properties, ahv-preview {
+        position: relative;
+    }
 }
 
 core-toolbar {
@@ -24,6 +28,8 @@ core-toolbar {
     paper-checkbox {
         margin: 0 4px;
     }
+
+    polyfill-next-selector { shadow: '#checkboxContainer'; }
     paper-checkbox::shadow {
         #checkbox {
             border-color: #FAFAFA;
@@ -39,10 +45,3 @@ core-toolbar {
         }
     }
 }
-
-.container {
-    position: relative;
-    height: 100%;
-}
-
-

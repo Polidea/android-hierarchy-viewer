@@ -1,12 +1,12 @@
 <link rel="import" href="../../../bower_components/polymer/polymer.html">
 <link rel="import" href="ahv-singleview.html">
 
-<polymer-element name="ahv-preview" attributes="views zoom">
+<polymer-element name="ahv-preview" attributes="views zoom selectedView highlightView">
     <template>
     <link rel="stylesheet" href="ahv-preview.css">
-        <div id="container">
+        <div id="container" fit>
         <template repeat="{{view in views}}">
-        <ahv-singleview view="{{view}}" index="{{1}}" scale="{{scale * zoom}}" origin="{{view | origin}}"></ahv-singleview>
+        <ahv-singleview view="{{view}}" index="{{1}}" scale="{{scale * zoom}}" origin="{{view | origin}}" highlightView="{{highlightView}}"></ahv-singleview>
         </template>
         </div>
     </template>
@@ -14,11 +14,18 @@
         Polymer({
             zoom: 1.0,
             scale: 1.0,
-            attached: function() {
+            ready: function() {
                 var self = this;
-                window.addEventListener("resize", function() { 
+                this.addEventListener("resize", function() { 
                     self.resize.apply(self); 
                 });
+                this.addEventListener("preview-selected", function(e) {
+                    self.selectedView = e.detail;
+                });
+                this.addEventListener("preview-highlight", function(e) {
+                    self.highlightView = e.detail;
+                }); 
+                this.resize();
             },
             domReady: function() {
                 this.resize();
@@ -52,13 +59,11 @@
                     else if (height > width * aspect) {
                         height = width * aspect;
                     }
-                    console.log("size ", width, height);
                     this.scale =  width / this.viewWidth;
                 }
                 else {
                     this.scale = 1.0;
                 }
-                console.log("scale ", this.scale);
             },
             origin: function(view) {
                 return {
