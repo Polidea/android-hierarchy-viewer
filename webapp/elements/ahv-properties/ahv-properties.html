@@ -1,18 +1,57 @@
+<link href="ahv-inner.html" rel="import">
 
 <polymer-element name="ahv-properties" attributes="view">
     <template>
         <link rel="stylesheet" href="ahv-properties.css">
-        <template repeat="{{key in keys}}">
-        <template if="{{}}"></template>
-        <template></template>
-        <div>{{ key }} - {{ view[key] }}</div>
-        </template>
+        <table>
+            <thead>
+                <tr>
+                    <th>Property</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            <template repeat="{{key in keys}}">
+                <tr>
+                    <td class="key">{{key}}</td>
+                    <template if="{{isObject(view[key])}}">
+                    <td>
+                        <ahv-inner property="{{view[key]}}"></ahv-inner>
+                    </td>
+                    </template>
+                    <template if="{{!isObject(view[key])}}">
+                    <td>{{view[key]}}</td>
+                    </template>
+                </tr>
+            </template>
+        </table>
     </template>
     <script type="text/javascript">
     Polymer({
         view: null,
+        ready: function() {
+            this.order = ["name", "x", "y", "width", "height", "enabled", "visiblity"];
+        },
         viewChanged: function() {
-            this.keys = Object.keys(this.view);
+           this.loadKeys();
+        },
+        isObject: function(value) {
+            return value instanceof Object;
+        },
+        loadKeys: function() {
+            var self = this;
+            this.keys = Object.keys(this.view).filter(function(key) {
+                return key !== "generateId" && key !== "children" && key !== "pathToFile";
+            });
+            this.keys = this.keys.sort(function(a, b) {
+                var aIndex = self.order.indexOf(a);
+                var bIndex = self.order.indexOf(b);
+                if (aIndex === -1) aIndex = Number.MAX_SAFE_INTEGER;
+                if (bIndex === -1) bIndex = Number.MAX_SAFE_INTEGER;
+                if (aIndex < bIndex) return -1;
+                if (aIndex > bIndex) return 1;
+                return 0;
+
+            });
         }
     });
     </script>

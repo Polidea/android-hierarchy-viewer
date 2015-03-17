@@ -5,14 +5,19 @@ body {
 }
 
 ahv-list {
-    min-width: 20%;
+    position: fixed;
+    overflow-y: auto;
+    top: 64px;
+    bottom: 0;
+    width: 25%;
 }
 
 .container {
-    position: fixed;
-    height: 90%;
-    width: 100%;
-
+    position: absolute;
+    left: 25%;
+    right: 0;
+    top: 0;
+    bottom: 0;
     ahv-properties, ahv-preview {
         position: relative;
     }
@@ -45,3 +50,5 @@ core-toolbar {
         }
     }
 }
+
+

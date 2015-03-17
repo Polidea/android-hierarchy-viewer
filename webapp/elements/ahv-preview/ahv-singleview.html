@@ -1,7 +1,7 @@
 <link rel="import" href="../../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../../bower_components/core-style/core-style.html">
 
-<polymer-element name="ahv-singleview" attributes="view index scale origin highlightView">
+<polymer-element name="ahv-singleview" attributes="view index scale origin highlightView showDebugFrames">
 <template>
     <style>
         :host {
@@ -9,14 +9,11 @@
             background-repeat: no-repeat;
             background-size: 100%;
         }
-        .outline {
-            border: 1px solid #009688;
-        }
     </style>
     <!--<span>{{view.x}} {{view.y}} {{view.width}} {{view.height}}</span>-->
     <div fit class="outline" on-tap="{{select}}" on-mouseover="{{hover}}" on-mouseout="{{unhover}}"></div>
     <template repeat="{{child in view.children}}">
-    <ahv-singleview view="{{child}}" index="{{ nextIndex }}" scale="{{scale}}" origin="{{child | addOrigin}}" highlightView="{{highlightView}}"></ahv-singleview>
+    <ahv-singleview view="{{child}}" index="{{ nextIndex }}" scale="{{scale}}" origin="{{child | addOrigin}}" highlightView="{{highlightView}}" showDebugFrames="{{showDebugFrames}}"></ahv-singleview>
     </template>
 </template>
 <script type="text/javascript">
@@ -28,6 +25,14 @@
         viewChanged: function() {
             if (this.view.pathToFile) {
                 this.style["backgroundImage"] = "url('/api/screen/" + this.view.pathToFile + "')";
+            }
+        },
+        showDebugFramesChanged: function() {
+            if (this.showDebugFrames) {
+                this.shadowRoot.querySelector(".outline").style["border"] = "1px solid #009688";
+            }
+            else {
+                this.shadowRoot.querySelector(".outline").style["border"] = "0";
             }
         },
         highlightViewChanged: function() {

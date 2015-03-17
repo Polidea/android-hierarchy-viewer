@@ -1,12 +1,17 @@
 <link rel="import" href="../../../bower_components/polymer/polymer.html">
 <link rel="import" href="ahv-singleview.html">
 
-<polymer-element name="ahv-preview" attributes="views zoom selectedView highlightView">
+<polymer-element name="ahv-preview" attributes="views zoom selectedView highlightView showDebugFrames">
     <template>
     <link rel="stylesheet" href="ahv-preview.css">
         <div id="container" fit>
         <template repeat="{{view in views}}">
-        <ahv-singleview view="{{view}}" index="{{1}}" scale="{{scale * zoom}}" origin="{{view | origin}}" highlightView="{{highlightView}}"></ahv-singleview>
+        <ahv-singleview view="{{view}}"
+            index="{{1}}"
+            scale="{{scale * zoom}}"
+            origin="{{view | origin}}"
+            highlightView="{{highlightView}}"
+            showDebugFrames="{{showDebugFrames}}"></ahv-singleview>
         </template>
         </div>
     </template>
@@ -30,6 +35,9 @@
             domReady: function() {
                 this.resize();
             },
+            //showDebugFramesChanged: function() {
+            //    this.shadowRoot.querySelector("ahv-singleview").showDebugFrames = this.showDebugFrames;
+            //},
             viewsChanged: function() {
                 var self = this;
                 this.viewList = [];

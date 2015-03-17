@@ -24,23 +24,34 @@
 <body unresolved fullbleed layout vertical auto>
   <template is="auto-binding" id="app">
     <ahv-datasource data="{{views}}"></ahv-datasource>
-    <core-header-panel fit>
+    <core-header-panel flex>
         <core-toolbar>
             <span>Views</span>
             <div flex></div>
             <core-label layout horizontal>
                 Debug frames
-                <paper-checkbox for></paper-checkbox>
+                <paper-checkbox for checked="{{showDebugFrames}}"></paper-checkbox>
             </core-label>
         </core-toolbar>
-        <div fit layout horizontal>
-            <ahv-list views="{{views}}" selectedView="{{selectedView}}" highlightView="{{highlightView}}"></ahv-list>
+        <core-localstorage name="showDebugFrames" value="{{showDebugFrames}}"></core-localstorage>
+        <main layout horizontal>
+        <ahv-list views="{{views}}" selectedView="{{selectedView}}" highlightView="{{highlightView}}"></ahv-list>
+        <div class="container" layout horizontal flex>
+            <ahv-preview flex
+                views="{{views}}" 
+                selectedView="{{selectedView}}" 
+                highlightView="{{highlightView}}"
+                showDebugFrames="{{showDebugFrames}}"></ahv-preview>
+            <ahv-properties flex view="{{selectedView}}"></ahv-properties>
+        </div>
+        </main>
+        <!--<div fit layout horizontal>
             <div class="container" layout horizontal flex>
                     <ahv-preview flex views="{{views}}" selectedView="{{selectedView}}" highlightView="{{highlightView}}"></ahv-preview>
                     <ahv-properties flex view="{{selectedView}}"></ahv-properties>
                 </div>
             </div>
-        </div>
+        </div>-->
     </core-header-panel>
   </template>
 

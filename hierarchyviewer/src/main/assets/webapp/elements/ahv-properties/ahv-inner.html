@@ -1,0 +1,28 @@
+<polymer-element name="ahv-inner" attributes="property">
+    <template>
+        <style type="text/css">
+            table {
+                margin-top: -2px;
+                border:none;
+                border-collapse: collapse;
+                border-spacing: 0;
+            }
+        </style>
+        <table>
+            <template repeat="{{key in keys}}">
+                <tr>
+                    <td>{{key}}</td>
+                    <td>{{property[key]}}</td>
+                </tr>
+            </template>
+        </table>
+    </template>
+    <script type="text/javascript">
+    Polymer({
+        propertyChanged: function() {
+            this.keys = Object.keys(this.property);
+        }
+            
+    });
+    </script>
+</polymer-element>

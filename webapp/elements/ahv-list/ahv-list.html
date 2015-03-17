@@ -4,11 +4,13 @@
 <polymer-element name="ahv-list" attributes="views selectedView highlightView">
     <template>
         <link rel="stylesheet" href="ahv-list.css">
-        <ul>
-        <template repeat="{{view in views}}">
-        <ahv-cell view="{{view}}" highlightView="{{highlightView}}"></ahv-cell>
-        </template>
-        </ul>
+        <div class="container">
+            <ul>
+            <template repeat="{{view in views}}">
+            <ahv-cell view="{{view}}" highlightView="{{highlightView}}"></ahv-cell>
+            </template>
+            </ul>
+        </div>
     </template>
     <script type="text/javascript">
         Polymer({
