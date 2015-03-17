@@ -4,6 +4,7 @@ import android.view.View;
 import android.widget.GridLayout;
 import com.google.gson.annotations.SerializedName;
 import com.polidea.hierarchyviewer.internal.logic.ConvertersContainer;
+import com.polidea.hierarchyviewer.internal.provider.FileUtilsProvider;
 
 public class GridLayoutModelInfo extends ViewGroupModelInfo {
 
@@ -31,8 +32,8 @@ public class GridLayoutModelInfo extends ViewGroupModelInfo {
     AlignmentMode alignmentMode;
 
     @Override
-    public void setDataFromView(View view, ConvertersContainer convertersContainer) {
-        super.setDataFromView(view, convertersContainer);
+    public void setDataFromView(View view, ConvertersContainer convertersContainer, FileUtilsProvider fileUtilsProvider) {
+        super.setDataFromView(view, convertersContainer, fileUtilsProvider);
         GridLayout gridLayout = (GridLayout) view;
         columnCount = gridLayout.getColumnCount();
         rowCount = gridLayout.getRowCount();

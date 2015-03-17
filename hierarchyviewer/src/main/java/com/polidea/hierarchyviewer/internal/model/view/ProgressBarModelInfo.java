@@ -4,6 +4,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 import com.google.gson.annotations.SerializedName;
 import com.polidea.hierarchyviewer.internal.logic.ConvertersContainer;
+import com.polidea.hierarchyviewer.internal.provider.FileUtilsProvider;
 
 public class ProgressBarModelInfo extends ViewModelInfo {
 
@@ -24,8 +25,8 @@ public class ProgressBarModelInfo extends ViewModelInfo {
     int secondaryProgress;
 
     @Override
-    public void setDataFromView(View view, ConvertersContainer convertersContainer) {
-        super.setDataFromView(view, convertersContainer);
+    public void setDataFromView(View view, ConvertersContainer convertersContainer, FileUtilsProvider fileUtilsProvider) {
+        super.setDataFromView(view, convertersContainer, fileUtilsProvider);
         ProgressBar progressBar = (ProgressBar) view;
         max = progressBar.getMax();
         progress = progressBar.getProgress();

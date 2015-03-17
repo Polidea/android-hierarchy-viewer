@@ -4,6 +4,7 @@ import android.view.View;
 import android.widget.CheckedTextView;
 import com.google.gson.annotations.SerializedName;
 import com.polidea.hierarchyviewer.internal.logic.ConvertersContainer;
+import com.polidea.hierarchyviewer.internal.provider.FileUtilsProvider;
 
 public class CheckedTextViewModelInfo extends TextViewModelInfo {
 
@@ -16,8 +17,8 @@ public class CheckedTextViewModelInfo extends TextViewModelInfo {
     boolean isChecked;
 
     @Override
-    public void setDataFromView(View view, ConvertersContainer convertersContainer) {
-        super.setDataFromView(view, convertersContainer);
+    public void setDataFromView(View view, ConvertersContainer convertersContainer, FileUtilsProvider fileUtilsProvider) {
+        super.setDataFromView(view, convertersContainer, fileUtilsProvider);
         CheckedTextView checkedTextView = (CheckedTextView) view;
         isChecked = checkedTextView.isChecked();
     }

@@ -51,11 +51,7 @@ public class HierarchyViewConverter {
         for (final View view : viewList) {
 
             ModelInfo modelInfo = convertersContainer.getModelInfoForClass(view.getClass());
-            modelInfo.setDataFromView(view, convertersContainer);
-            String fileName = UUID.randomUUID().toString();
-            if (fileUtilsProvider.saveViewInFile(view, fileName)) {
-                modelInfo.setLinkToFile(fileName);
-            }
+            modelInfo.setDataFromView(view, convertersContainer, fileUtilsProvider);
             hierarchyView.add(modelInfo);
         }
         return gson.toJson(hierarchyView);
