@@ -40,7 +40,6 @@ public class FileUtilsProvider {
     }
 
     public boolean saveViewInFile(View view, String fileName) {
-        File dir = new File(SERVER_CACHE_DIR);
         view.setDrawingCacheEnabled(true);
 
         Bitmap cacheBitmap = view.getDrawingCache();
@@ -51,7 +50,7 @@ public class FileUtilsProvider {
         }
         Bitmap bitmap = Bitmap.createBitmap(cacheBitmap);
         view.setDrawingCacheEnabled(false);
-        File imageFile = new File(dir, "IMG_" + fileName + ".png");
+        File imageFile = getFile(fileName);
 
         try {
             OutputStream fout = new FileOutputStream(imageFile);

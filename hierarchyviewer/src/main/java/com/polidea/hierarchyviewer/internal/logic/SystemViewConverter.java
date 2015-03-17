@@ -6,6 +6,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CheckedTextView;
 import android.widget.CompoundButton;
+import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
@@ -18,7 +19,9 @@ import com.polidea.hierarchyviewer.internal.model.view.ButtonModelInfo;
 import com.polidea.hierarchyviewer.internal.model.view.CheckBoxModelInfo;
 import com.polidea.hierarchyviewer.internal.model.view.CheckedTextViewModelInfo;
 import com.polidea.hierarchyviewer.internal.model.view.CompoundButtonModelInfo;
+import com.polidea.hierarchyviewer.internal.model.view.GridLayoutModelInfo;
 import com.polidea.hierarchyviewer.internal.model.view.ImageViewModelInfo;
+import com.polidea.hierarchyviewer.internal.model.view.ModelInfo;
 import com.polidea.hierarchyviewer.internal.model.view.ProgressBarModelInfo;
 import com.polidea.hierarchyviewer.internal.model.view.RadioButtonModelInfo;
 import com.polidea.hierarchyviewer.internal.model.view.RadioGroupModelInfo;
@@ -31,6 +34,12 @@ import com.polidea.hierarchyviewer.internal.model.view.ViewModelInfo;
 
 public enum SystemViewConverter implements ViewConverter {
 
+    GRID_LAYOUT(GridLayout.class){
+        @Override
+        public GridLayoutModelInfo getModelInfo() {
+            return new GridLayoutModelInfo();
+        }
+    },
     RADIO_GROUP(RadioGroup.class) {
         @Override
         public RadioGroupModelInfo getModelInfo() {
