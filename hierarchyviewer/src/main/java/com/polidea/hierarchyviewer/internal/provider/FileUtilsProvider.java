@@ -54,7 +54,7 @@ public class FileUtilsProvider {
 
         try {
             OutputStream fout = new FileOutputStream(imageFile);
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 90, fout);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 90, fout);
             fout.flush();
             fout.close();
 
