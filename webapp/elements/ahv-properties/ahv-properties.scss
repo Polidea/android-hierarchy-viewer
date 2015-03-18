@@ -1,13 +1,13 @@
 :host {
     height: 100%;
-    background: white;
-    border-left: 1px solid #ddd;
 }
 
 table {
     width: 100%;
     border:none;
     border-collapse: collapse;
+    border-left: 1px solid #ddd;
+    background: white;
 
     th {
         text-transform: uppercase;

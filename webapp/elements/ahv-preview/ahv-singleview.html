@@ -1,7 +1,7 @@
 <link rel="import" href="../../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../../bower_components/core-style/core-style.html">
 
-<polymer-element name="ahv-singleview" attributes="view index scale origin highlightView showDebugFrames">
+<polymer-element name="ahv-singleview" attributes="view index scale origin highlightView showDebugFrames background">
 <template>
     <style>
         :host {
@@ -22,9 +22,9 @@
         y: 0,
         width: 0,
         height: 0,
-        viewChanged: function() {
-            if (this.view.pathToFile) {
-                this.style["backgroundImage"] = "url('/api/screen/" + this.view.pathToFile + "')";
+        backgroundChanged: function() {
+            if (this.background) {
+                this.style["backgroundImage"] = "url('/api/screen/" + this.background + "')";
             }
         },
         showDebugFramesChanged: function() {
@@ -36,7 +36,7 @@
             }
         },
         highlightViewChanged: function() {
-            if (this.highlightView.generateId === this.view.generateId) {
+            if (this.highlightView.generate_id === this.view.generate_id) {
                 this.shadowRoot.querySelector(".outline").style["background"] = "rgba(0, 150, 136, 0.5)";
             }
             else {
@@ -62,7 +62,7 @@
             this.style["height"] = this.height + 1 + "px";
         },
         get screenPath() {
-            return this.view.pathToFile;
+            return this.view.path_to_file;
         },
         addOrigin: function(view) {
             return {

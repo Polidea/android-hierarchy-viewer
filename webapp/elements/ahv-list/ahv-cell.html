@@ -25,14 +25,14 @@
             </ul>
             </core-collapse>
         </template>
-        <core-localstorage id="storage" name="ahv-view-{{view.name}}-{{view.generateId}}-{{view.x}}-{{view.y}}-" value="{{expanded}}"></core-localstorage>
+        <core-localstorage id="storage" name="ahv-view-{{view.name}}-{{view.generate_id}}-{{view.x}}-{{view.y}}-" value="{{expanded}}"></core-localstorage>
     </template>
     <script type="text/javascript">
         Polymer({
             ready: function() {
             },
             highlightViewChanged: function() {
-                if (this.highlightView.generateId === this.view.generateId) {
+                if (this.highlightView.generate_id === this.view.generate_id) {
                     this.shadowRoot.querySelector("li").style["background"] = "rgba(0, 150, 136, 0.5)";
                 }
                 else {

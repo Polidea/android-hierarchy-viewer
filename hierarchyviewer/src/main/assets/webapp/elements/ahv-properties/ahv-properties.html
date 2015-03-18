@@ -29,7 +29,7 @@
     Polymer({
         view: null,
         ready: function() {
-            this.order = ["name", "x", "y", "width", "height", "enabled", "visiblity"];
+            this.order = ["name", "x", "y", "width", "height", "enabled", "visibility"];
         },
         viewChanged: function() {
            this.loadKeys();
@@ -40,7 +40,7 @@
         loadKeys: function() {
             var self = this;
             this.keys = Object.keys(this.view).filter(function(key) {
-                return key !== "generateId" && key !== "children" && key !== "pathToFile";
+                return key !== "generate_id" && key !== "children" && key !== "path_to_file";
             });
             this.keys = this.keys.sort(function(a, b) {
                 var aIndex = self.order.indexOf(a);
