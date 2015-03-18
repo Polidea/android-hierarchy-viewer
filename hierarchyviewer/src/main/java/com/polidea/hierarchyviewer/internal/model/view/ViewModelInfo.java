@@ -92,8 +92,10 @@ public class ViewModelInfo implements ModelInfo {
             layoutParamModelInfo = convertersContainer.getLayoutParamsModelInfo(layoutParams.getClass());
             layoutParamModelInfo.setDataFromLayoutParams(layoutParams);
         }
-        pathToFile = UUID.randomUUID().toString();
-        fileUtilsProvider.saveViewInFile(view, pathToFile);
+        final String pathToFile = UUID.randomUUID().toString();
+        if(fileUtilsProvider.saveViewInFile(view, pathToFile)){
+            this.pathToFile = pathToFile;
+        }
 
     }
 }
