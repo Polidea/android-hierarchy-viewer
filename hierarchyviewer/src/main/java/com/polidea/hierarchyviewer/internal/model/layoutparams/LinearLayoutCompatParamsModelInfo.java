@@ -10,7 +10,7 @@ public class LinearLayoutCompatParamsModelInfo extends ViewGroupMarginLayoutPara
     interface Metadata {
 
         String WEIGHT = "weight";
-        String GRAVITY = "layoutGravity";
+        String GRAVITY = "layout_gravity";
     }
 
     @SerializedName(Metadata.WEIGHT)

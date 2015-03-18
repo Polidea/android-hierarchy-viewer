@@ -8,13 +8,13 @@ public class ViewGroupMarginLayoutParamsModelInfo extends ViewGroupLayoutParamsM
 
     interface Metadata {
 
-        String BOTTOM_MARGIN = "bottomMargin";
-        String LEFT_MARGIN = "leftMargin";
-        String RIGHT_MARGIN = "rightMargin";
-        String TOP_MARGIN = "topMargin";
-        String START_MARGIN = "startMargin";
-        String END_MARGIN = "endMargin";
-        String LAYOUT_DIRECTION = "layoutDirection";
+        String BOTTOM_MARGIN = "bottom_margin";
+        String LEFT_MARGIN = "left_margin";
+        String RIGHT_MARGIN = "right_margin";
+        String TOP_MARGIN = "top_margin";
+        String START_MARGIN = "start_margin";
+        String END_MARGIN = "end_margin";
+        String LAYOUT_DIRECTION = "layout_direction";
     }
 
     @SerializedName(Metadata.BOTTOM_MARGIN)

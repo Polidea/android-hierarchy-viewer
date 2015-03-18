@@ -11,7 +11,7 @@ public class HierarchyViewModel {
 
     interface Metadata {
 
-        String VIEW_LIST = "viewList";
+        String VIEW_LIST = "view_list";
     }
 
     @SerializedName(Metadata.VIEW_LIST)

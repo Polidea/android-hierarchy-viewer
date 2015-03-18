@@ -7,7 +7,7 @@ public class ThrowableModel {
     interface Metadata {
 
         String NAME = "name";
-        String STACK_TRACE = "stackTrace";
+        String STACK_TRACE = "stack_trace";
         String CAUSE = "cause";
 
     }

@@ -5,7 +5,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.google.gson.annotations.SerializedName;
 import com.polidea.hierarchyviewer.internal.logic.ConvertersContainer;
-import com.polidea.hierarchyviewer.internal.model.Visibility;
 import com.polidea.hierarchyviewer.internal.model.layoutparams.LayoutParamsModelInfo;
 import com.polidea.hierarchyviewer.internal.provider.FileUtilsProvider;
 import java.util.UUID;
