@@ -10,7 +10,7 @@ public class CompoundButtonModelInfo extends ButtonModelInfo {
 
     public interface Metadata {
 
-        String IS_CHECKED = "isChecked";
+        String IS_CHECKED = "is_checked";
     }
 
     @SerializedName(Metadata.IS_CHECKED)

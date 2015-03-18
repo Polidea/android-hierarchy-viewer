@@ -12,7 +12,7 @@ public class ProgressBarModelInfo extends ViewModelInfo {
 
         String MAX = "max";
         String PROGRESS = "progress";
-        String SECONDARY_PROGRESS = "secondaryProgress";
+        String SECONDARY_PROGRESS = "secondary_progress";
     }
 
     @SerializedName(Metadata.MAX)

@@ -9,11 +9,11 @@ import com.polidea.hierarchyviewer.internal.provider.FileUtilsProvider;
 public class GridLayoutModelInfo extends ViewGroupModelInfo {
 
     interface Metadata {
-        String COLUMN_COUNT = "columnCount";
-        String ROW_COUNT = "rowCount";
-        String IS_COLUMN_ORDER_PRESERVED = "isColumnOrderPreserved";
-        String IS_ROW_ORDER_RESERVED = "isRowOrderPreserved";
-        String ALIGNMENT_MODE = "alignmentMode";
+        String COLUMN_COUNT = "column_count";
+        String ROW_COUNT = "row_count";
+        String IS_COLUMN_ORDER_PRESERVED = "is_column_order_preserved";
+        String IS_ROW_ORDER_RESERVED = "is_row_order_preserved";
+        String ALIGNMENT_MODE = "alignment_mode";
     }
 
     @SerializedName(Metadata.COLUMN_COUNT)

@@ -10,7 +10,7 @@ import com.polidea.hierarchyviewer.internal.provider.FileUtilsProvider;
 public class RadioGroupModelInfo extends ViewGroupModelInfo {
 
     interface Metadata{
-        String CHECKED_ITEM_ID = "checkedItemId";
+        String CHECKED_ITEM_ID = "checked_item_id";
     }
 
     @SerializedName(Metadata.CHECKED_ITEM_ID)

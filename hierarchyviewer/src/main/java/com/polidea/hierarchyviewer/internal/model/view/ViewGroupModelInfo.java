@@ -13,7 +13,7 @@ public class ViewGroupModelInfo extends ViewModelInfo{
 
     interface Metadata {
         String CHILDREN = "children";
-        String COUNT_CHILDREN = "countChildren";
+        String COUNT_CHILDREN = "count_children";
     }
 
     @SerializedName(Metadata.COUNT_CHILDREN)

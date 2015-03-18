@@ -14,11 +14,11 @@ public class ViewModelInfo implements ModelInfo {
 
     interface Metadata {
 
-        String PACKAGE_NAME = "packageName";
+        String PACKAGE_NAME = "package_name";
         String NAME = "name";
         String ID = "id";
-        String ID_RES_NAME = "idResName";
-        String GENERATE_ID = "generateId";
+        String ID_RES_NAME = "id_res_name";
+        String GENERATE_ID = "generate_id";
         String ENABLED = "enabled";
         String VISIBILITY = "visibility";
 
@@ -28,9 +28,9 @@ public class ViewModelInfo implements ModelInfo {
         String WIDTH = "width";
         String HEIGHT = "height";
 
-        String PATH_TO_FILE = "pathToFile";
+        String PATH_TO_FILE = "path_to_file";
 
-        String LAYOUT_PARAM = "layoutParam";
+        String LAYOUT_PARAM = "layout_param";
     }
 
     @SerializedName(Metadata.PACKAGE_NAME)

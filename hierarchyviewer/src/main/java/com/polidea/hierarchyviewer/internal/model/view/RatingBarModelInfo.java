@@ -12,9 +12,9 @@ public class RatingBarModelInfo extends AbsSeekBarModelInfo {
     interface Metadata {
 
         String RATING = "rating";
-        String STEP_SIZE = "stepSize";
+        String STEP_SIZE = "step_size";
         String NUM_STAR = "numStar";
-        String IS_INDICATOR = "isIndicator";
+        String IS_INDICATOR = "is_indicator";
     }
 
     @SerializedName(Metadata.RATING)
