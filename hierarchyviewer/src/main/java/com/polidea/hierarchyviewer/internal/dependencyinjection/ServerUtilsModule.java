@@ -2,6 +2,7 @@ package com.polidea.hierarchyviewer.internal.dependencyinjection;
 
 import android.content.Context;
 
+import com.polidea.hierarchyviewer.Config;
 import com.polidea.hierarchyviewer.internal.provider.DeviceInfoProvider;
 import com.polidea.hierarchyviewer.internal.provider.NotificationProvider;
 import com.polidea.hierarchyviewer.internal.provider.ServerInfoProvider;
@@ -36,8 +37,8 @@ class ServerUtilsModule {
 
     @Singleton
     @Provides
-    WebServer provideWebServer() {
-        return new WebServer(context);
+    WebServer provideWebServer(Config config) {
+        return new WebServer(context, config.getPort());
     }
 
     @Singleton

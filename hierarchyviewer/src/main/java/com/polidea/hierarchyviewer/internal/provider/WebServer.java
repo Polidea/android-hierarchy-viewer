@@ -3,10 +3,7 @@ package com.polidea.hierarchyviewer.internal.provider;
 import static fi.iki.elonen.NanoHTTPD.Response.Status.OK;
 
 import android.content.Context;
-import android.util.Log;
-import com.polidea.hierarchyviewer.BuildConfig;
 import com.polidea.hierarchyviewer.HierarchyViewer;
-import com.polidea.hierarchyviewer.R;
 import com.polidea.hierarchyviewer.internal.logic.HierarchyViewConverter;
 import fi.iki.elonen.NanoHTTPD;
 import java.io.FileInputStream;
@@ -48,8 +45,8 @@ public class WebServer extends NanoHTTPD {
 
     private final Context context;
 
-    public WebServer(Context ctx) {
-        super(BuildConfig.PORT);
+    public WebServer(Context ctx, int port) {
+        super(port);
         context = ctx;
         HierarchyViewer.component().inject(this);
     }

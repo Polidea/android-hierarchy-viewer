@@ -10,20 +10,23 @@ public class HierarchyViewer {
     private static HierarchyViewerComponent component;
 
 
-    public static void start(Config config) {
-        config.context.startService(new Intent(config.context, HierarchyViewerService.class));
+    public static void start(Context context) {
+        start(context, new Config.Builder().build());
     }
-    public static void initializeComponent(Context context) {
-        component = HierarchyViewerComponent.Initializer.init(context);
+
+    public static void start(Context context, Config config) {
+        component = HierarchyViewerComponent.Initializer.init(context, config);
+        context.startService(new Intent(context, HierarchyViewerService.class));
+    }
+
+    public static void shouldStop(Context context){
+        context.stopService(new Intent(context, HierarchyViewerService.class));
     }
 
     public static HierarchyViewerComponent component() {
         return component;
     }
 
-    public static void shouldStop(Context context){
-        context.stopService(new Intent(context, HierarchyViewerService.class));
-    }
     public static boolean isComponent() {
         return component != null;
     }

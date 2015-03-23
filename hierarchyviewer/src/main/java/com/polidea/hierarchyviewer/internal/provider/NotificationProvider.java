@@ -5,6 +5,7 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.support.v4.app.NotificationCompat;
 import com.polidea.hierarchyviewer.BuildConfig;
+import com.polidea.hierarchyviewer.Config;
 import com.polidea.hierarchyviewer.HierarchyViewer;
 import com.polidea.hierarchyviewer.R;
 import javax.inject.Inject;
@@ -21,6 +22,9 @@ public class NotificationProvider {
     @Inject
     ServerInfoProvider serverInfoProvider;
 
+    @Inject
+    Config config;
+
     private final Context context;
 
     public NotificationProvider(Context context) {
@@ -33,7 +37,7 @@ public class NotificationProvider {
         final Notification notification = new NotificationCompat.Builder(context)
                 .setSmallIcon(R.drawable.ic_stat_hardware_laptop)
                 .setContentTitle(context.getString(R.string.type_in_web_browser))
-                .setContentText(serverInfoProvider.getIpAddress() + ":" + BuildConfig.PORT)
+                .setContentText(serverInfoProvider.getIpAddress() + ":" + config.getPort())
                 .setOngoing(true)
                 .build();
         notification.flags = notification.flags | Notification.DEFAULT_LIGHTS;

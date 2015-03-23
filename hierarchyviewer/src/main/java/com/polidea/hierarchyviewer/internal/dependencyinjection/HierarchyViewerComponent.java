@@ -12,16 +12,17 @@ import dagger.Component;
 import javax.inject.Singleton;
 
 @Singleton
-@Component(modules = {ServerUtilsModule.class, SystemModule.class, RestModule.class})
+@Component(modules = {ServerUtilsModule.class, SystemModule.class, RestModule.class, ConfigModule.class})
 public interface HierarchyViewerComponent {
 
 
     public final static class Initializer {
 
-        public static HierarchyViewerComponent init(Context context) {
+        public static HierarchyViewerComponent init(Context context, Config config) {
             return Dagger_HierarchyViewerComponent.builder()
                     .serverUtilsModule(new ServerUtilsModule(context))
                     .systemModule(new SystemModule(context))
+                    .configModule(new ConfigModule(config))
                     .build();
         }
 
@@ -30,8 +31,6 @@ public interface HierarchyViewerComponent {
     void inject(HierarchyViewerService hierarchyViewerService);
 
     void inject(HierarchyViewConverter hierarchyViewConverter);
-
-    void inject(Config config);
 
     void inject(WebServer server);
 
