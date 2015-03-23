@@ -4,6 +4,7 @@ import android.content.Context;
 import com.polidea.hierarchyviewer.Config;
 import com.polidea.hierarchyviewer.internal.HierarchyViewerService;
 import com.polidea.hierarchyviewer.internal.logic.HierarchyViewConverter;
+import com.polidea.hierarchyviewer.internal.provider.DeviceInfoProvider;
 import com.polidea.hierarchyviewer.internal.provider.NotificationProvider;
 import com.polidea.hierarchyviewer.internal.provider.WebServer;
 
@@ -35,4 +36,6 @@ public interface HierarchyViewerComponent {
     void inject(WebServer server);
 
     void inject(NotificationProvider notificationProvider);
+
+    void inject(DeviceInfoProvider deviceInfoProvider);
 }

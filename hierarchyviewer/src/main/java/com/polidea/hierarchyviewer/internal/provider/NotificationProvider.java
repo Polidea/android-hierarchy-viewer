@@ -32,7 +32,7 @@ public class NotificationProvider {
     public void showServerAddressNotificationWithUrl() {
         final Notification notification = new NotificationCompat.Builder(context)
                 .setSmallIcon(R.drawable.ic_stat_hardware_laptop)
-                .setContentTitle(context.getString(R.string.server_address))
+                .setContentTitle(context.getString(R.string.type_in_web_browser))
                 .setContentText(serverInfoProvider.getIpAddress() + ":" + BuildConfig.PORT)
                 .setOngoing(true)
                 .build();

@@ -3,8 +3,10 @@ package com.polidea.hierarchyviewer.internal.provider;
 import static fi.iki.elonen.NanoHTTPD.Response.Status.OK;
 
 import android.content.Context;
+import android.util.Log;
 import com.polidea.hierarchyviewer.BuildConfig;
 import com.polidea.hierarchyviewer.HierarchyViewer;
+import com.polidea.hierarchyviewer.R;
 import com.polidea.hierarchyviewer.internal.logic.HierarchyViewConverter;
 import fi.iki.elonen.NanoHTTPD;
 import java.io.FileInputStream;
@@ -41,6 +43,9 @@ public class WebServer extends NanoHTTPD {
     @Inject
     ServerInfoProvider serverInfoProvider;
 
+    @Inject
+    DeviceInfoProvider deviceInfoProvider;
+
     private final Context context;
 
     public WebServer(Context ctx) {
@@ -56,8 +61,7 @@ public class WebServer extends NanoHTTPD {
         fileUtilsProvider.clearCacheFolder();
 
         notificationProvider.showServerAddressNotificationWithUrl();
-        System.out.println("Started with IP: " + serverInfoProvider.getIpAddress() + ":" + BuildConfig.PORT);
-
+        deviceInfoProvider.logServerAddressInfoMessage();
     }
 
     @Override
