@@ -49,6 +49,5 @@ public class Config {
         public Config build() {
             return new Config(this);
         }
-
     }
 }
