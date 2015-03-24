@@ -1,9 +1,13 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'android-maven'
 
 android {
     compileSdkVersion 21
     buildToolsVersion "21.1.1"
+
+    group = 'com.polidea.hierarchyviewerdemo'
+    version = '1.0-SNAPSHOT'
 
     signingConfigs {
         hierarchyViewerConfig {
