@@ -33,10 +33,10 @@
             },
             highlightViewChanged: function() {
                 if (this.highlightView.generate_id === this.view.generate_id) {
-                    this.shadowRoot.querySelector("li").style["background"] = "rgba(0, 150, 136, 0.5)";
+                    this.shadowRoot.querySelector("li").classList.add("highlighted");
                 }
                 else {
-                    this.shadowRoot.querySelector("li").style["background"] = "white";
+                    this.shadowRoot.querySelector("li").classList.remove("highlighted");
                 }
             },
             toggle: function() {
@@ -57,20 +57,20 @@
                 this.fire("list-highlight", null);
             },
             containView: function(view) {
-                if (this.view.generateId === view.generateId) {
+                if (this.view.generate_id === view.generate_id) {
+                    this.shadowRoot.querySelector("li").classList.add("selected");
                     this.expanded = true;
                     return true;
                 }
                 else {
+                    this.shadowRoot.querySelector("li").classList.remove("selected");
                     var children = this.shadowRoot.querySelectorAll("ahv-cell");
+                    var hasInside = false;
                     for (var i = 0; i < children.length; i++) {
-                        if (children[i].containView(view)) {
-                            this.expanded = true;
-                            return true;
-                        }
+                        hasInside = children[i].containView(view) || hasInside;
                     }
-                    this.expanded = false;
-                    return false;
+                    this.expanded = hasInside;
+                    return hasInside;
                 }
             }
         });

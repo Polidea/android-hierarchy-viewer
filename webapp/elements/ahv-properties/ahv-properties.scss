@@ -7,6 +7,7 @@ table {
     border:none;
     border-collapse: collapse;
     border-left: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
     background: white;
 
     th {
@@ -21,11 +22,13 @@ table {
         font-size: 14px;
         text-align: left;
         padding-left: 16px;
+    }
+
+    td.key {
         padding-right: 24px;
     }
 
     td {
-
         padding-top: 8px;
         padding-bottom: 8px;
         line-height: 24px;

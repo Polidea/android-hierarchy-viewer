@@ -3,8 +3,9 @@
 
 <polymer-element name="ahv-preview" attributes="views zoom selectedView highlightView showDebugFrames">
     <template>
-    <link rel="stylesheet" href="ahv-preview.css">
+        <link rel="stylesheet" href="ahv-preview.css">
         <div id="container" fit>
+        <div id="overlay" style=""></div>
         <template repeat="{{view in views}}">
         <ahv-singleview view="{{view}}"
             index="{{1}}"
@@ -36,9 +37,6 @@
             domReady: function() {
                 this.resize();
             },
-            //showDebugFramesChanged: function() {
-            //    this.shadowRoot.querySelector("ahv-singleview").showDebugFrames = this.showDebugFrames;
-            //},
             viewsChanged: function() {
                 var self = this;
                 this.viewList = [];
@@ -54,6 +52,9 @@
                     addToList(view);
                 });
                 this.resize();
+            },
+            selectedViewChanged: function() {
+
             },
             resize: function() {
                 if (this.viewList != null) {

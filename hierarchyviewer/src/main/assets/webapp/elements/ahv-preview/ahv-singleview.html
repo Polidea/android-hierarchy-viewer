@@ -3,18 +3,19 @@
 
 <polymer-element name="ahv-singleview" attributes="view index scale origin highlightView showDebugFrames background">
 <template>
-    <style>
-        :host {
-            position: absolute;
-            background-repeat: no-repeat;
-            background-size: 100%;
-        }
-    </style>
+    <link rel="stylesheet" href="ahv-singleview.css">
     <!--<span>{{view.x}} {{view.y}} {{view.width}} {{view.height}}</span>-->
     <div fit class="outline" on-tap="{{select}}" on-mouseover="{{hover}}" on-mouseout="{{unhover}}"></div>
     <template repeat="{{child in view.children}}">
-    <ahv-singleview view="{{child}}" index="{{ nextIndex }}" scale="{{scale}}" origin="{{child | addOrigin}}" highlightView="{{highlightView}}" showDebugFrames="{{showDebugFrames}}"></ahv-singleview>
+    <ahv-singleview 
+        view="{{child}}" 
+        index="{{ nextIndex }}" 
+        scale="{{scale}}" 
+        origin="{{child | addOrigin}}" 
+        highlightView="{{highlightView}}" 
+        showDebugFrames="{{showDebugFrames}}"></ahv-singleview>
     </template>
+    <core-ajax id="loader" url="/api/screen/{{view.path_to_file}}" handleAs="json"></core-ajax>
 </template>
 <script type="text/javascript">
     Polymer({
@@ -37,15 +38,16 @@
         },
         highlightViewChanged: function() {
             if (this.highlightView.generate_id === this.view.generate_id) {
-                this.shadowRoot.querySelector(".outline").style["background"] = "rgba(0, 150, 136, 0.5)";
+                this.shadowRoot.querySelector(".outline").classList.add("highlighted");
             }
             else {
-                this.shadowRoot.querySelector(".outline").style["background"] = "transparent";
+                this.shadowRoot.querySelector(".outline").classList.remove("highlighted");
             }
         },
         indexChanged: function() {
             this.nextIndex = this.index + 1;
             this.style["zIndex"] = this.index;
+            //this.style["transform"] = this.style["transform"] + " translateZ(" + (-this.index * 10) + "px)";
         },
         scaleChanged: function() {
             this.x = this.view.x * this.scale;
@@ -71,6 +73,7 @@
             };
         },
         select: function() {
+            this.$.loader.go();
             this.fire("preview-selected", this.view);
         },
         hover: function() {
