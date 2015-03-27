@@ -6,7 +6,6 @@ import android.view.ViewGroup;
 import com.google.gson.annotations.SerializedName;
 import com.polidea.hierarchyviewer.internal.logic.ConvertersContainer;
 import com.polidea.hierarchyviewer.internal.model.layoutparams.LayoutParamsModelInfo;
-import com.polidea.hierarchyviewer.internal.provider.FileUtilsProvider;
 import java.util.UUID;
 
 public class ViewModelInfo implements ModelInfo {
@@ -72,7 +71,7 @@ public class ViewModelInfo implements ModelInfo {
     LayoutParamsModelInfo layoutParamModelInfo;
 
     @Override
-    public void setDataFromView(View view, ConvertersContainer convertersContainer, FileUtilsProvider fileUtilsProvider) {
+    public void setDataFromView(View view, ConvertersContainer convertersContainer) {
         packageName = view.getClass().getPackage().getName();
         generateId = UUID.randomUUID().getMostSignificantBits();
         name = view.getClass().getSimpleName();
@@ -92,10 +91,9 @@ public class ViewModelInfo implements ModelInfo {
             layoutParamModelInfo = convertersContainer.getLayoutParamsModelInfo(layoutParams.getClass());
             layoutParamModelInfo.setDataFromLayoutParams(layoutParams);
         }
-        final String pathToFile = UUID.randomUUID().toString();
-        if(fileUtilsProvider.saveViewInFile(view, pathToFile)){
-            this.pathToFile = pathToFile;
-        }
+    }
 
+    public void setPathToFile(String pathToFile) {
+        this.pathToFile = pathToFile;
     }
 }

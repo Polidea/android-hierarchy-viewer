@@ -4,7 +4,6 @@ import android.view.View;
 import android.widget.CompoundButton;
 import com.google.gson.annotations.SerializedName;
 import com.polidea.hierarchyviewer.internal.logic.ConvertersContainer;
-import com.polidea.hierarchyviewer.internal.provider.FileUtilsProvider;
 
 public class CompoundButtonModelInfo extends ButtonModelInfo {
 
@@ -17,8 +16,8 @@ public class CompoundButtonModelInfo extends ButtonModelInfo {
     boolean isChecked;
 
     @Override
-    public void setDataFromView(View view, ConvertersContainer convertersContainer, FileUtilsProvider fileUtilsProvider) {
-        super.setDataFromView(view, convertersContainer, fileUtilsProvider);
+    public void setDataFromView(View view, ConvertersContainer convertersContainer) {
+        super.setDataFromView(view, convertersContainer);
         CompoundButton compoundButton = (CompoundButton) view;
         isChecked = compoundButton.isChecked();
     }

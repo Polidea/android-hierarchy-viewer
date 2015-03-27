@@ -28,7 +28,6 @@ public class HierarchyViewProvider {
         mainViewListField.setAccessible(true);
 
         List<View> viewList;
-
         Object views = mainViewListField.get(windowManagerGlobal);
         if (Build.VERSION.SDK_INT >= 21) {
             viewList = (List<View>) views;

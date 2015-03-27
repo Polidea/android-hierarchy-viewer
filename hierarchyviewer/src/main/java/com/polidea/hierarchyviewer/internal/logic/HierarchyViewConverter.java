@@ -3,10 +3,10 @@ package com.polidea.hierarchyviewer.internal.logic;
 import android.view.View;
 import com.google.gson.Gson;
 import com.polidea.hierarchyviewer.HierarchyViewer;
-import com.polidea.hierarchyviewer.internal.HierarchyViewerService;
 import com.polidea.hierarchyviewer.internal.model.HierarchyViewModel;
 import com.polidea.hierarchyviewer.internal.model.ThrowableModel;
 import com.polidea.hierarchyviewer.internal.model.view.ModelInfo;
+import com.polidea.hierarchyviewer.internal.model.view.ViewModelInfo;
 import com.polidea.hierarchyviewer.internal.provider.FileUtilsProvider;
 import com.polidea.hierarchyviewer.internal.provider.HierarchyViewProvider;
 import java.util.List;
@@ -45,13 +45,15 @@ public class HierarchyViewConverter {
         }
     }
 
-    private String toJson(List<View> viewList) {
+    private String toJson(final List<View> viewList) {
         final HierarchyViewModel hierarchyView = new HierarchyViewModel();
-
         for (final View view : viewList) {
-
             ModelInfo modelInfo = convertersContainer.getModelInfoForClass(view.getClass());
-            modelInfo.setDataFromView(view, convertersContainer, fileUtilsProvider);
+            modelInfo.setDataFromView(view, convertersContainer);
+            String pathToFile = UUID.randomUUID().toString();
+            if (fileUtilsProvider.saveViewInFile(view, pathToFile)) {
+                ((ViewModelInfo) modelInfo).setPathToFile(pathToFile);
+            }
             hierarchyView.add(modelInfo);
         }
         return gson.toJson(hierarchyView);

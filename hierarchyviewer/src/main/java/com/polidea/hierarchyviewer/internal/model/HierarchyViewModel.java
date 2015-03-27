@@ -3,7 +3,7 @@ package com.polidea.hierarchyviewer.internal.model;
 
 import com.google.gson.annotations.SerializedName;
 import com.polidea.hierarchyviewer.internal.model.view.ModelInfo;
-import com.polidea.hierarchyviewer.internal.model.view.ViewModelInfo;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
