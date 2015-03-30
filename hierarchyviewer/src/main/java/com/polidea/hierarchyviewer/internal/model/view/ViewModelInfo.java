@@ -29,6 +29,8 @@ public class ViewModelInfo implements ModelInfo {
         String PATH_TO_FILE = "path_to_file";
 
         String LAYOUT_PARAM = "layout_param";
+
+        String ALPHA = "alpha";
     }
 
     @SerializedName(Metadata.PACKAGE_NAME)
@@ -67,6 +69,9 @@ public class ViewModelInfo implements ModelInfo {
     @SerializedName(Metadata.PATH_TO_FILE)
     String pathToFile;
 
+    @SerializedName(Metadata.ALPHA)
+    float alpha;
+
     @SerializedName(Metadata.LAYOUT_PARAM)
     LayoutParamsModelInfo layoutParamModelInfo;
 
@@ -91,6 +96,7 @@ public class ViewModelInfo implements ModelInfo {
             layoutParamModelInfo = convertersContainer.getLayoutParamsModelInfo(layoutParams.getClass());
             layoutParamModelInfo.setDataFromLayoutParams(layoutParams);
         }
+        alpha = view.getAlpha();
     }
 
     public void setPathToFile(String pathToFile) {
