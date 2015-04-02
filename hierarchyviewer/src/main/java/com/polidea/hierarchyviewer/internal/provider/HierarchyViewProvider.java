@@ -2,11 +2,15 @@ package com.polidea.hierarchyviewer.internal.provider;
 
 
 import android.os.Build;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import javax.inject.Inject;
 
@@ -30,11 +34,25 @@ public class HierarchyViewProvider {
         List<View> viewList;
         Object views = mainViewListField.get(windowManagerGlobal);
         if (Build.VERSION.SDK_INT >= 21) {
-            viewList = (List<View>) views;
+            viewList = new ArrayList<>((List<View>) views);
         } else {
             View[] viewsArray = (View[]) views;
             viewList = new ArrayList<>(Arrays.asList(viewsArray));
         }
+
+        sortByWindowType(viewList);
+
         return viewList;
+    }
+
+    private void sortByWindowType(List<View> viewList) {
+        Collections.sort(viewList, new Comparator<View>() {
+            @Override
+            public int compare(View lhs, View rhs) {
+                WindowManager.LayoutParams lhsLayoutParams = (WindowManager.LayoutParams) lhs.getLayoutParams();
+                WindowManager.LayoutParams rhsLayoutParams = (WindowManager.LayoutParams) rhs.getLayoutParams();
+                return Integer.valueOf(lhsLayoutParams.type).compareTo(rhsLayoutParams.type);
+            }
+        });
     }
 }

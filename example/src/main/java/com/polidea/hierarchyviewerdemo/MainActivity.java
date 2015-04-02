@@ -6,6 +6,9 @@ import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
+import android.widget.ToggleButton;
 import com.polidea.hierarchyviewer.Config;
 import com.polidea.hierarchyviewer.HierarchyViewer;
 
@@ -24,6 +27,14 @@ public class MainActivity extends ActionBarActivity {
                 .setNegativeButton("Cancel", null)
                 .create()
                 .show();
+
+        ToggleButton toggleButton = (ToggleButton) findViewById(R.id.toggleButton);
+        toggleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(v.getContext(), "Showing toast!", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     @Override

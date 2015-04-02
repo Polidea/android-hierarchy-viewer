@@ -1,11 +1,16 @@
 package com.polidea.hierarchyviewer.internal.model.view;
 
 
+import android.graphics.Rect;
+import android.util.Pair;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewParent;
+import android.view.WindowManager;
 import com.google.gson.annotations.SerializedName;
 import com.polidea.hierarchyviewer.internal.logic.ConvertersContainer;
 import com.polidea.hierarchyviewer.internal.model.layoutparams.LayoutParamsModelInfo;
+import java.lang.reflect.Field;
 import java.util.UUID;
 
 public class ViewModelInfo implements ModelInfo {
@@ -87,16 +92,46 @@ public class ViewModelInfo implements ModelInfo {
 
         enabled = view.isEnabled();
         visibility = Visibility.getFromViewVisibility(view.getVisibility());
-        x = view.getX();
-        y = view.getY();
+
         width = view.getWidth();
         height = view.getHeight();
+
+        Pair<Float, Float> point = calculateLocation(view);
+        x = point.first;
+        y = point.second;
+
         ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
         if (layoutParams != null) {
             layoutParamModelInfo = convertersContainer.getLayoutParamsModelInfo(layoutParams.getClass());
             layoutParamModelInfo.setDataFromLayoutParams(layoutParams);
         }
         alpha = view.getAlpha();
+    }
+
+    private Pair<Float, Float> calculateLocation(View view) {
+        ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+        if (layoutParams.getClass() == WindowManager.LayoutParams.class) {
+            return calculateRootViewLocation(view, (WindowManager.LayoutParams) layoutParams);
+        }
+        return new Pair<>(view.getX(), view.getY());
+    }
+
+    private Pair<Float, Float> calculateRootViewLocation(View view, WindowManager.LayoutParams windowLayoutParams) {
+        float x = view.getX();
+        float y = view.getY();
+        if (windowLayoutParams.width != ViewGroup.LayoutParams.MATCH_PARENT && windowLayoutParams.height != ViewGroup.LayoutParams.MATCH_PARENT) {
+            try {
+                ViewParent parent = view.getParent();
+                Field winFrameField = parent.getClass().getDeclaredField("mWinFrame");
+                winFrameField.setAccessible(true);
+                Rect rect = (Rect) winFrameField.get(parent);
+                x = rect.left;
+                y = rect.top;
+            } catch (Exception ignored) {
+
+            }
+        }
+        return new Pair<>(x, y);
     }
 
     public void setPathToFile(String pathToFile) {
