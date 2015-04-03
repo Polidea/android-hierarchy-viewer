@@ -1,12 +1,15 @@
 package com.polidea.hierarchyviewer.internal.model.view;
 
 
+import android.content.res.Resources;
 import android.graphics.Rect;
+import android.util.Log;
 import android.util.Pair;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.view.WindowManager;
+import android.widget.LinearLayout;
 import com.google.gson.annotations.SerializedName;
 import com.polidea.hierarchyviewer.internal.logic.ConvertersContainer;
 import com.polidea.hierarchyviewer.internal.model.layoutparams.LayoutParamsModelInfo;
@@ -87,7 +90,9 @@ public class ViewModelInfo implements ModelInfo {
         name = view.getClass().getSimpleName();
         id = view.getId();
         if (id != ID_NOT_FOUND) {
-            idResName = view.getContext().getResources().getResourceEntryName(id);
+            try {
+                idResName = view.getContext().getResources().getResourceEntryName(id);
+            } catch (Resources.NotFoundException ignored) {}
         }
 
         enabled = view.isEnabled();

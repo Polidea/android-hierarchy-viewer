@@ -9,13 +9,15 @@ public class HierarchyViewer {
 
     private static HierarchyViewerComponent component;
 
-
-    public static void start(Context context) {
-        start(context, new Config.Builder().build());
+    public static void setDefaultConfig(Context context, Config config) {
+        component = HierarchyViewerComponent.Initializer.init(context, config);
     }
 
-    public static void start(Context context, Config config) {
-        component = HierarchyViewerComponent.Initializer.init(context, config);
+    public static void start(Context context) {
+        if(component == null) {
+            setDefaultConfig(context, new Config.Builder().build());
+        }
+
         context.startService(new Intent(context, HierarchyViewerService.class));
     }
 

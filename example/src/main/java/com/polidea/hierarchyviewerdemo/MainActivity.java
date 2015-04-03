@@ -1,6 +1,7 @@
 package com.polidea.hierarchyviewerdemo;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
@@ -9,7 +10,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 import android.widget.ToggleButton;
-import com.polidea.hierarchyviewer.Config;
 import com.polidea.hierarchyviewer.HierarchyViewer;
 
 
@@ -38,18 +38,15 @@ public class MainActivity extends ActionBarActivity {
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        Config config = new Config.Builder()
-                .add(MyTextView.class, new MyTextViewModelInfo())
-                .build();
-        HierarchyViewer.start(this, config);
+    protected void onStart() {
+        super.onStart();
+//        HierarchyViewer.start(this);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        HierarchyViewer.shouldStop(this);
+//        HierarchyViewer.shouldStop(this);
     }
 
     @Override
@@ -67,7 +64,8 @@ public class MainActivity extends ActionBarActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_scrolling_lists) {
+            startActivity(new Intent(this, ScrollingViewsActivity.class));
             return true;
         }
 

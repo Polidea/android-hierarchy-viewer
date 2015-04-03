@@ -16,3 +16,4 @@ bower_components
 .tmp
 test/bower_components/
 app/build
+HierarchyViewerDemo.iml

@@ -1,31 +1,51 @@
 package com.polidea.hierarchyviewer.internal.logic;
 
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
+import android.widget.AbsSpinner;
+import android.widget.AdapterView;
+import android.widget.AdapterViewAnimator;
+import android.widget.AdapterViewFlipper;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CheckedTextView;
 import android.widget.CompoundButton;
+import android.widget.ExpandableListView;
 import android.widget.GridLayout;
+import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RatingBar;
+import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.ToggleButton;
+import com.polidea.hierarchyviewer.internal.model.view.AbsListViewModelInfo;
+import com.polidea.hierarchyviewer.internal.model.view.AbsSpinnerModelInfo;
+import com.polidea.hierarchyviewer.internal.model.view.AdapterViewAnimatorModelInfo;
+import com.polidea.hierarchyviewer.internal.model.view.AdapterViewFlipperModelInfo;
+import com.polidea.hierarchyviewer.internal.model.view.AdapterViewModelInfo;
 import com.polidea.hierarchyviewer.internal.model.view.ButtonModelInfo;
 import com.polidea.hierarchyviewer.internal.model.view.CheckBoxModelInfo;
 import com.polidea.hierarchyviewer.internal.model.view.CheckedTextViewModelInfo;
 import com.polidea.hierarchyviewer.internal.model.view.CompoundButtonModelInfo;
+import com.polidea.hierarchyviewer.internal.model.view.ExpandableListViewModelInfo;
 import com.polidea.hierarchyviewer.internal.model.view.GridLayoutModelInfo;
+import com.polidea.hierarchyviewer.internal.model.view.GridViewModelInfo;
 import com.polidea.hierarchyviewer.internal.model.view.ImageViewModelInfo;
+import com.polidea.hierarchyviewer.internal.model.view.ListViewModelInfo;
 import com.polidea.hierarchyviewer.internal.model.view.ModelInfo;
 import com.polidea.hierarchyviewer.internal.model.view.ProgressBarModelInfo;
 import com.polidea.hierarchyviewer.internal.model.view.RadioButtonModelInfo;
 import com.polidea.hierarchyviewer.internal.model.view.RadioGroupModelInfo;
 import com.polidea.hierarchyviewer.internal.model.view.RatingBarModelInfo;
+import com.polidea.hierarchyviewer.internal.model.view.RecyclerViewModelInfo;
+import com.polidea.hierarchyviewer.internal.model.view.SpinnerModelInfo;
 import com.polidea.hierarchyviewer.internal.model.view.SwitchModelInfo;
 import com.polidea.hierarchyviewer.internal.model.view.TextViewModelInfo;
 import com.polidea.hierarchyviewer.internal.model.view.ToggleButtonModelInfo;
@@ -34,7 +54,7 @@ import com.polidea.hierarchyviewer.internal.model.view.ViewModelInfo;
 
 public enum SystemViewConverter implements ViewConverter {
 
-    GRID_LAYOUT(GridLayout.class){
+    GRID_LAYOUT(GridLayout.class) {
         @Override
         public GridLayoutModelInfo getModelInfo() {
             return new GridLayoutModelInfo();
@@ -120,6 +140,76 @@ public enum SystemViewConverter implements ViewConverter {
         @Override
         public TextViewModelInfo getModelInfo() {
             return new TextViewModelInfo();
+        }
+    },
+
+    SPINNER(Spinner.class) {
+        @Override
+        public ModelInfo getModelInfo() {
+            return new SpinnerModelInfo();
+        }
+    },
+
+    GRID_VIEW(GridView.class) {
+        @Override
+        public ModelInfo getModelInfo() {
+            return new GridViewModelInfo();
+        }
+    },
+
+    EXPANDABLE_LIST_VIEW(ExpandableListView.class) {
+        @Override
+        public ModelInfo getModelInfo() {
+            return new ExpandableListViewModelInfo();
+        }
+    },
+
+    LIST_VIEW(ListView.class) {
+        @Override
+        public ModelInfo getModelInfo() {
+            return new ListViewModelInfo();
+        }
+    },
+
+    ADAPTER_VIEW_FLIPPER(AdapterViewFlipper.class) {
+        @Override
+        public ModelInfo getModelInfo() {
+            return new AdapterViewFlipperModelInfo();
+        }
+    },
+
+    ABS_LIST_VIEW(AbsListView.class) {
+        @Override
+        public AbsListViewModelInfo getModelInfo() {
+            return new AbsListViewModelInfo();
+        }
+    },
+
+    ABS_SPINNER(AbsSpinner.class) {
+        @Override
+        public ModelInfo getModelInfo() {
+            return new AbsSpinnerModelInfo();
+        }
+    },
+
+    ADAPTER_VIEW_ANIMATOR(AdapterViewAnimator.class) {
+        @Override
+        public ModelInfo getModelInfo() {
+            return new AdapterViewAnimatorModelInfo();
+        }
+    },
+
+    ADAPTER_VIEW(AdapterView.class) {
+        @Override
+        public AdapterViewModelInfo getModelInfo() {
+            return new AdapterViewModelInfo();
+        }
+    },
+
+    RECYCLER_VIEW(RecyclerView.class) {
+        @Override
+        public ModelInfo getModelInfo() {
+            return new RecyclerViewModelInfo();
         }
     },
 
