@@ -7,9 +7,10 @@ body {
 ahv-list {
     position: fixed;
     overflow-y: auto;
-    top: 64px;
+    top: 72px;
     bottom: 0;
     width: 25%;
+    z-index: 9999;
 }
 
 .container {
@@ -18,12 +19,19 @@ ahv-list {
     right: 0;
     top: 0;
     bottom: 0;
+
+    ahv-properties {
+        margin-top: 8px;
+        z-index: 9999;
+    }
+
     ahv-properties, ahv-preview {
         position: relative;
     }
 }
 
 core-toolbar {
+    z-index: 9999;
     color: #FAFAFA;
     background-color: #009688;
 
