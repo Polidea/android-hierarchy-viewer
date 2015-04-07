@@ -97,7 +97,7 @@ public class AbsListViewModelInfo extends AdapterViewModelInfo {
     @SerializedName(Metadata.TEXT_FILTER_ENABLED)
     boolean textFilterEnabled;
 
-    private SparseArray<String> choiceModeToStringMap = new SparseArray<String>(4) {
+    private transient SparseArray<String> choiceModeToStringMap = new SparseArray<String>(4) {
         {
             put(AbsListView.CHOICE_MODE_NONE, "CHOICE_MODE_NONE");
             put(AbsListView.CHOICE_MODE_SINGLE, "CHOICE_MODE_SINGLE");

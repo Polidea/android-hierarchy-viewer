@@ -51,7 +51,7 @@ public class GridViewModelInfo extends AbsListViewModelInfo {
     @SerializedName(Metadata.VERTICAL_SPACING)
     int verticalSpacing;
 
-    private SparseArray<String> stretchModeToStringMap = new SparseArray<String>(4) {
+    private transient SparseArray<String> stretchModeToStringMap = new SparseArray<String>(4) {
         {
             put(GridView.NO_STRETCH, "NO_STRETCH");
             put(GridView.STRETCH_SPACING, "STRETCH_SPACING");
