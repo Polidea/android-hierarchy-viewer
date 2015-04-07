@@ -13,6 +13,6 @@ public class MyApplication extends Application {
         Config config = new Config.Builder()
                 .add(MyTextView.class, new MyTextViewModelInfo())
                 .build();
-        HierarchyViewer.setDefaultConfig(this, config);
+        HierarchyViewer.start(this, config);
     }
 }

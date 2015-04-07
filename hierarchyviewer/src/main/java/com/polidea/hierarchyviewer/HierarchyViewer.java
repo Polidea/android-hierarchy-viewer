@@ -9,20 +9,18 @@ public class HierarchyViewer {
 
     private static HierarchyViewerComponent component;
 
-    public static void setDefaultConfig(Context context, Config config) {
-        component = HierarchyViewerComponent.Initializer.init(context, config);
+    public static void start(Context context) {
+        start(context, new Config.Builder().build());
     }
 
-    public static void start(Context context) {
-        if(component == null) {
-            setDefaultConfig(context, new Config.Builder().build());
+    public static void start(Context context, Config config) {
+        if(HierarchyViewerService.isRunning()) {
+            return;
         }
 
-        context.startService(new Intent(context, HierarchyViewerService.class));
-    }
+        component = HierarchyViewerComponent.Initializer.init(context, config);
 
-    public static void shouldStop(Context context){
-        context.stopService(new Intent(context, HierarchyViewerService.class));
+        context.startService(new Intent(context, HierarchyViewerService.class));
     }
 
     public static HierarchyViewerComponent component() {

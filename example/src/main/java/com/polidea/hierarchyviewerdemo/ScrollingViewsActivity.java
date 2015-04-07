@@ -43,18 +43,6 @@ public class ScrollingViewsActivity extends ActionBarActivity{
         });
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        HierarchyViewer.start(this);
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        HierarchyViewer.shouldStop(this);
-    }
-
     public static class MyAdapter extends FragmentPagerAdapter {
         public MyAdapter(FragmentManager fm) {
             super(fm);

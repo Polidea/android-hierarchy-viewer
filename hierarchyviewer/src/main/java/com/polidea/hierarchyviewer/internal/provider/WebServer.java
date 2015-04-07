@@ -34,14 +34,9 @@ public class WebServer extends NanoHTTPD {
     @Inject
     FileUtilsProvider fileUtilsProvider;
 
-    @Inject
-    NotificationProvider notificationProvider;
 
     @Inject
     ServerInfoProvider serverInfoProvider;
-
-    @Inject
-    DeviceInfoProvider deviceInfoProvider;
 
     private final Context context;
 
@@ -56,15 +51,6 @@ public class WebServer extends NanoHTTPD {
         super.start();
         fileUtilsProvider.createCacheFolderIfNotExist();
         fileUtilsProvider.clearCacheFolder();
-
-        notificationProvider.showServerAddressNotificationWithUrl();
-        deviceInfoProvider.logServerAddressInfoMessage();
-    }
-
-    @Override
-    public void stop() {
-        notificationProvider.cancelServerAddressNotificationWithUrl();
-        super.stop();
     }
 
     @Override

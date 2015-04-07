@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">HierarchyViewer</string>
-    <string name="type_in_web_browser">Type in web browser:</string>
+    <string name="open_this_webpage">Open in Google Chrome on your computer</string>
     <string name="emulator_info" formatted="false">It seems you are using emulator. To make it work type in terminal: \'adb forward tcp:%d tcp:%d\'</string>
+    <string name="turn_off">Turn off</string>
 </resources>

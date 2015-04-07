@@ -8,6 +8,8 @@ import com.polidea.hierarchyviewer.Config;
 import com.polidea.hierarchyviewer.HierarchyViewer;
 import com.polidea.hierarchyviewer.internal.logic.ConvertersContainer;
 import com.polidea.hierarchyviewer.internal.model.view.ModelInfo;
+import com.polidea.hierarchyviewer.internal.provider.DeviceInfoProvider;
+import com.polidea.hierarchyviewer.internal.provider.NotificationProvider;
 import com.polidea.hierarchyviewer.internal.provider.WebServer;
 import java.io.IOException;
 import java.util.Map;
@@ -24,6 +26,14 @@ public class HierarchyViewerService extends Service {
     @Inject
     ConvertersContainer convertersContainer;
 
+    @Inject
+    NotificationProvider notificationProvider;
+
+    @Inject
+    DeviceInfoProvider deviceInfoProvider;
+
+    private static boolean isRunning = false;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -35,10 +45,11 @@ public class HierarchyViewerService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        try {
-            server.start();
-        } catch (IOException e) {
-            e.printStackTrace();
+        if(!isRunning) {
+            startServerAndShowNotification();
+        }
+        if(notificationProvider.isTurnOffNotificationIntent(intent)) {
+            stopSelf();
         }
         return START_NOT_STICKY;
     }
@@ -47,11 +58,30 @@ public class HierarchyViewerService extends Service {
     public void onDestroy() {
         super.onDestroy();
         server.stop();
+        isRunning = false;
+
+        notificationProvider.cancelServerAddressNotificationWithUrl();
     }
 
     @Override
     public IBinder onBind(Intent intent) {
         return null;
+    }
+
+    public static boolean isRunning() {
+        return isRunning;
+    }
+
+    private void startServerAndShowNotification() {
+        try {
+            server.start();
+            isRunning = true;
+
+            notificationProvider.showServerAddressNotificationWithUrl();
+            deviceInfoProvider.logServerAddressInfoMessage();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void addCustomConvertersFromConfig() {
