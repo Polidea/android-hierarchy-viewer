@@ -28,6 +28,9 @@ public class MainActivity extends ActionBarActivity {
                 .create()
                 .show();
 
+        View backgroundView = findViewById(R.id.background_view);
+        backgroundView.animate().scaleX(0.5f).scaleY(0.5f).setDuration(1000).start();;
+
         ToggleButton toggleButton = (ToggleButton) findViewById(R.id.toggleButton);
         toggleButton.setOnClickListener(new View.OnClickListener() {
             @Override

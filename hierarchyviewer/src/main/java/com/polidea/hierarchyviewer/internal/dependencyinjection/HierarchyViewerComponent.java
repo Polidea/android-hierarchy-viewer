@@ -19,7 +19,7 @@ public interface HierarchyViewerComponent {
     public final static class Initializer {
 
         public static HierarchyViewerComponent init(Context context, Config config) {
-            return Dagger_HierarchyViewerComponent.builder()
+            return DaggerHierarchyViewerComponent.builder()
                     .serverUtilsModule(new ServerUtilsModule(context))
                     .systemModule(new SystemModule(context))
                     .configModule(new ConfigModule(config))

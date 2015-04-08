@@ -21,24 +21,28 @@ public class ViewModelInfo implements ModelInfo {
     interface Metadata {
 
         String PACKAGE_NAME = "package_name";
+
         String NAME = "name";
         String ID = "id";
         String ID_RES_NAME = "id_res_name";
         String GENERATE_ID = "generate_id";
         String ENABLED = "enabled";
         String VISIBILITY = "visibility";
-
         String X = "x";
         String Y = "y";
+        String SCROLL_X = "scroll_x";
+        String SCROLL_Y = "scroll_y";
+        String SCALE_X = "scale_x";
+        String SCALE_Y = "scale_y";
 
         String WIDTH = "width";
         String HEIGHT = "height";
-
         String PATH_TO_FILE = "path_to_file";
 
         String LAYOUT_PARAM = "layout_param";
 
         String ALPHA = "alpha";
+
     }
 
     @SerializedName(Metadata.PACKAGE_NAME)
@@ -83,6 +87,18 @@ public class ViewModelInfo implements ModelInfo {
     @SerializedName(Metadata.LAYOUT_PARAM)
     LayoutParamsModelInfo layoutParamModelInfo;
 
+    @SerializedName(Metadata.SCROLL_X)
+    int scrollX;
+
+    @SerializedName(Metadata.SCROLL_Y)
+    int scrollY;
+
+    @SerializedName(Metadata.SCALE_X)
+    float scaleX;
+
+    @SerializedName(Metadata.SCALE_Y)
+    float scaleY;
+
     @Override
     public void setDataFromView(View view, ConvertersContainer convertersContainer) {
         packageName = view.getClass().getPackage().getName();
@@ -104,6 +120,12 @@ public class ViewModelInfo implements ModelInfo {
         Pair<Float, Float> point = calculateLocation(view);
         x = point.first;
         y = point.second;
+
+        scrollX = view.getScrollX();
+        scrollY = view.getScrollY();
+
+        scaleX = view.getScaleX();
+        scaleY = view.getScaleY();
 
         ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
         if (layoutParams != null) {
