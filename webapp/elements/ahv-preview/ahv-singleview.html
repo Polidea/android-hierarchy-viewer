@@ -1,7 +1,7 @@
 <link rel="import" href="../../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../../bower_components/core-style/core-style.html">
 
-<polymer-element name="ahv-singleview" attributes="view index scale origin highlightView showDebugFrames background">
+<polymer-element name="ahv-singleview" attributes="view index scale origin viewScroll highlightView showDebugFrames background">
 <template>
     <link rel="stylesheet" href="ahv-singleview.css">
     <!--<span>{{view.x}} {{view.y}} {{view.width}} {{view.height}}</span>-->
@@ -10,7 +10,8 @@
     <ahv-singleview 
         view="{{child}}" 
         index="{{ nextIndex }}" 
-        scale="{{scale}}" 
+        scale="{{scale}}"
+        viewScroll="{{nextScroll}}"
         origin="{{child | addOrigin}}" 
         highlightView="{{highlightView}}" 
         showDebugFrames="{{showDebugFrames}}"></ahv-singleview>
@@ -50,8 +51,8 @@
             //this.style["transform"] = this.style["transform"] + " translateZ(" + (-this.index * 10) + "px)";
         },
         scaleChanged: function() {
-            this.x = this.view.x * this.scale;
-            this.y = this.view.y * this.scale;
+            this.x = (this.view.x - this.viewScroll.x) * this.scale;
+            this.y = (this.view.y - this.viewScroll.y) * this.scale;
             this.width = this.view.width * this.scale;
             this.height = this.view.height * this.scale;
 
@@ -70,6 +71,12 @@
             return {
                 x: this.origin.x + view.x,
                 y: this.origin.y + view.y
+            };
+        },
+        get nextScroll() {
+            return {
+                x: this.view.scroll_x,
+                y: this.view.scroll_y
             };
         },
         select: function() {

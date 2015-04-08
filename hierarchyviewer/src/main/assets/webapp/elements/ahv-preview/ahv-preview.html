@@ -8,9 +8,10 @@
         <div id="overlay" style=""></div>
         <template repeat="{{view in views}}">
         <ahv-singleview view="{{view}}"
-            index="{{1}}"
+            index="{{view | index}}"
             scale="{{scale * zoom}}"
             origin="{{view | origin}}"
+            viewScroll="{{ {x: 0, y: 0} }}"
             highlightView="{{highlightView}}"
             showDebugFrames="{{showDebugFrames}}"
             background="{{view.path_to_file}}"></ahv-singleview>
@@ -33,6 +34,9 @@
                     self.highlightView = e.detail;
                 }); 
                 this.resize();
+            },
+            index: function(view) {
+                return this.views.indexOf(view);
             },
             domReady: function() {
                 this.resize();

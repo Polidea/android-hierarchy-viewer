@@ -26,7 +26,10 @@ table {
     }
 
     td.key {
-        padding-right: 24px;
+        max-width: 170px;
+        padding-right: 8px;
+        word-break: break-all;
+        white-space: normal;
     }
 
     td {
@@ -35,7 +38,7 @@ table {
         line-height: 24px;
         border-bottom: 1px solid #eee;
     } 
-    
+
     td.key {
         font-weight: 400;
         text-transform: uppercase;
