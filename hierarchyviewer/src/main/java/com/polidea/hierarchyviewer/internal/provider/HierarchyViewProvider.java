@@ -33,7 +33,7 @@ public class HierarchyViewProvider {
 
         List<View> viewList;
         Object views = mainViewListField.get(windowManagerGlobal);
-        if (Build.VERSION.SDK_INT >= 21) {
+        if (views instanceof List) {
             viewList = new ArrayList<>((List<View>) views);
         } else {
             View[] viewsArray = (View[]) views;
