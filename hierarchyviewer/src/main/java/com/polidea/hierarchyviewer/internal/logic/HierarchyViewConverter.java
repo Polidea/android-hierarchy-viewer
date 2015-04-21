@@ -58,9 +58,4 @@ public class HierarchyViewConverter {
         }
         return gson.toJson(hierarchyView);
     }
-
-    @Override
-    public String toString() {
-        return super.toString();
-    }
 }

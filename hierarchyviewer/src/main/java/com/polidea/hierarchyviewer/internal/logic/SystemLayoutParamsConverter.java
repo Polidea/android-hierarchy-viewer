@@ -15,8 +15,6 @@ import com.polidea.hierarchyviewer.internal.model.layoutparams.ViewGroupMarginLa
 
 enum SystemLayoutParamsConverter implements LayoutParamsConverter {
 
-
-
     FRAME_LAYOUT_PARAMS_MODEL_INFO(FrameLayout.LayoutParams.class) {
         @Override
         public FrameLayoutParamsModelInfo getLayoutParamsModelInfo() {
