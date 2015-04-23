@@ -8,14 +8,18 @@ import com.google.gson.annotations.SerializedName;
 
 public class MyTextView extends TextView {
 
-    @SerializedName("my_custom_item_value")
-    private String myCustomItem;
+    private String supperHint;
+
     public MyTextView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        myCustomItem = "Test item";
+        supperHint = "Default super hint";
     }
 
-    public String getMyCustomItem() {
-        return myCustomItem;
+    public void setSupperHint(String supperHint){
+        this.supperHint = supperHint;
+    }
+
+    public String getSupperHint() {
+        return supperHint;
     }
 }
