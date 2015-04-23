@@ -17,81 +17,106 @@
     <TextView
             android:text="@string/hello_world"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/textView"/>
+            android:layout_height="wrap_content"
+            android:id="@+id/textView"
+            android:layout_below="@+id/textView2"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"/>
     <com.polidea.hierarchyviewerdemo.MyTextView
             android:text="Hello"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/textView2"/>
+            android:layout_height="wrap_content"
+            android:id="@+id/textView2"/>
     <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/abc_ic_ab_back_mtrl_am_alpha"
-            android:id="@+id/imageView" android:layout_alignParentBottom="true" android:layout_centerHorizontal="true" android:layout_marginBottom="142dp"/>
+            android:id="@+id/imageView" android:layout_alignParentTop="true" android:layout_alignRight="@+id/background_view"
+            android:layout_alignEnd="@+id/background_view"/>
     <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="New RadioButton"
-            android:id="@+id/radioButton" android:layout_centerVertical="true" android:layout_toLeftOf="@+id/imageView"
-            android:layout_toStartOf="@+id/imageView"/>
-    <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="New RadioButton"
-            android:id="@+id/radioButton2"
-            android:layout_above="@+id/radioButton" android:layout_alignRight="@+id/checkBox" android:layout_alignEnd="@+id/checkBox"/>
+            android:id="@+id/radioButton"
+            android:layout_below="@+id/checkBox" android:layout_alignParentLeft="true" android:layout_alignParentStart="true"/>
     <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="New CheckBox"
-            android:id="@+id/checkBox" android:layout_above="@+id/radioButton" android:layout_alignLeft="@+id/radioButton"
-            android:layout_alignStart="@+id/radioButton" android:layout_marginBottom="64dp"/>
-    <Switch
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="New Switch"
-            android:id="@+id/switch1" android:layout_alignBottom="@+id/imageView" android:layout_alignLeft="@+id/radioButton"
-            android:layout_alignStart="@+id/radioButton"/>
+            android:id="@+id/checkBox"
+            android:layout_below="@+id/toggleButton" android:layout_alignParentLeft="true" android:layout_alignParentStart="true"/>
     <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/imageView2" android:layout_alignParentBottom="true" android:layout_alignParentLeft="true" android:layout_alignParentStart="true"/>
+            android:id="@+id/imageView2"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"/>
     <SeekBar
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/seekBar" android:layout_above="@+id/imageView2" android:layout_toRightOf="@+id/textView" android:layout_toEndOf="@+id/textView"/>
+            android:id="@+id/seekBar"
+            android:layout_above="@+id/switch1" />
     <Spinner
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/spinner" android:layout_below="@+id/textView" android:layout_alignLeft="@+id/radioButton2"
-            android:layout_alignStart="@+id/radioButton2"/>
-    <RatingBar
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/ratingBar" android:layout_below="@+id/switch1" android:layout_alignLeft="@+id/switch1" android:layout_alignStart="@+id/switch1"/>
+            android:id="@+id/spinner"
+            android:layout_below="@+id/textView"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"/>
     <ToggleButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="New ToggleButton"
-            android:id="@+id/toggleButton" android:layout_below="@+id/spinner" android:layout_centerHorizontal="true"/>
+            android:id="@+id/toggleButton"
+            android:layout_below="@+id/spinner"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"/>
     <EditText
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editText" android:layout_below="@+id/radioButton" android:layout_toRightOf="@+id/imageView2"
+            android:id="@+id/editText"
+            android:layout_below="@+id/radioButton"
+            android:layout_toRightOf="@+id/imageView2"
             android:layout_toEndOf="@+id/imageView2"/>
     <RadioGroup
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent" android:layout_above="@+id/switch1" android:layout_toRightOf="@+id/textView2"
-            android:layout_toEndOf="@+id/textView2" android:layout_alignTop="@+id/editText">
-        <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="New RadioButton"
-                android:id="@+id/radioButton3"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/editText"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_above="@+id/ratingBar" android:id="@+id/radioGroup">
         <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="New RadioButton"
                 android:id="@+id/radioButton4"/>
+        <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New RadioButton"
+                android:id="@+id/radioButton2"
+                android:layout_above="@+id/radioButton"
+                android:layout_alignRight="@+id/checkBox"
+                android:layout_alignEnd="@+id/checkBox"/>
+        <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New RadioButton"
+                android:id="@+id/radioButton3"/>
     </RadioGroup>
+    <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Switch"
+            android:id="@+id/switch1"
+            android:layout_alignLeft="@+id/radioButton"
+            android:layout_alignStart="@+id/radioButton" android:layout_alignBottom="@+id/background_view"/>
+    <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ratingBar"
+            android:layout_above="@+id/seekBar" android:layout_alignParentLeft="true" android:layout_alignParentStart="true"/>
+
 
 </RelativeLayout>
