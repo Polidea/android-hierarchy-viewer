@@ -1,8 +1,8 @@
 #Hierarchy Viewer
----
+
 Hierarchy Viewer is a library which allows to display views tree of your application in the simple way on your **Gooogle Chrome** browser.
 ##How to use?
----
+
 
 ###Download
 
@@ -93,18 +93,18 @@ When you will open link in your browser you wil see infromation about your views
 ![web](https://github.com/Polidea/android-hierarchy-viewer/blob/master/doc/screenshot/web_screen_shot.png)
 
 ##Main Contributors
----
+
 **Polidea developers**
 * Paweł Janeczek
 * Piotr Dubiel
 * Konrad Krakowiak
 
 ##Polidea
----
+
 [Visit our side](https://www.polidea.com)
 
-##Used librarise
----
+##Used libraries
+
 * **[dagger 2]** https://github.com/google/dagger
 * **[Gson]** https://github.com/google/gson
 * **[nanohttpd]** https://github.com/NanoHttpd/nanohttpd
@@ -112,7 +112,7 @@ When you will open link in your browser you wil see infromation about your views
 * **[javax annotation]**
 
 ##License
----
+
 [LICENSE](https://github.com/Polidea/android-hierarchy-viewer/blob/master/LICENSE)
 
 
