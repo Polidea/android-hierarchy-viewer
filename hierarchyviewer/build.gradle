@@ -6,7 +6,7 @@ android {
     compileSdkVersion 21
     buildToolsVersion "21.1.1"
 
-    group = 'com.polidea.hierarchyviewer'
+    group = 'com.polidea'
     version = '1.0'
 
     signingConfigs {

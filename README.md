@@ -9,13 +9,13 @@ Hierarchy Viewer is a library which allows to display views tree of your applica
 Download the latest JAR or grab via Gradle:
 
 ```gradle
-compile 'com.polidea.hierarchyviewer:hierarchyviewer:1.0'
+compile 'com.polidea:hierarchyviewer:1.0'
 ```
 or Maven:
 
 ```xml
 <dependency>
-  <groupId>com.polidea.hierarchyviewer</groupId>
+  <groupId>com.polidea</groupId>
   <artifactId>hierarchyviewer</artifactId>
   <version>1.0</version>
 </dependency>
