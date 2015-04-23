@@ -6,8 +6,8 @@ android {
     compileSdkVersion 21
     buildToolsVersion "21.1.1"
 
-    group = 'com.polidea.hierarchyviewerdemo'
-    version = '1.0-SNAPSHOT'
+    group = 'com.polidea.hierarchyviewer'
+    version = '1.0'
 
     signingConfigs {
         hierarchyViewerConfig {
@@ -22,7 +22,7 @@ android {
         minSdkVersion 14
         targetSdkVersion 21
         versionCode 1
-        versionName "SNAPSHOT-1.0"
+        versionName "1.0"
     }
     buildTypes {
         release {
