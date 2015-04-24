@@ -6,20 +6,47 @@ Hierarchy Viewer is a library which allows to display views tree of your applica
 
 ###Download
 
-Download the latest JAR or grab via Gradle:
+Via gradle. In main build.gradle :
 
 ```gradle
-compile 'com.polidea:hierarchyviewer:1.0'
+allprojects {
+    repositories {
+        ...
+        maven {
+            url "https://oss.sonatype.org/content/repositories/snapshots"
+        }
+    }
+}
 ```
-or Maven:
+
+Add library:
+
+```gradle
+compile 'com.polidea:hierarchyviewer:1.0.0-SNAPSHOT'
+```
+or Maven. Add plugin repository:
+
+```xml
+<pluginRepository>
+    <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+    <snapshots>
+        <enabled>true</enabled>
+    </snapshots>
+</pluginRepository>
+```
+
+Add library:
 
 ```xml
 <dependency>
   <groupId>com.polidea</groupId>
   <artifactId>hierarchyviewer</artifactId>
-  <version>1.0</version>
+  <version>1.0.0-SNAPSHOT</version>
 </dependency>
 ```
+
+**It is a stable version of library**
+
 ###In code
 
 If you want to just display your views tree - without your custom values or your custom views - you have to call the  `` start(Context)`` static method from ``HierarchyViewer class``, in the ``onCreate()`` method in your application object as is shown in the code below:
