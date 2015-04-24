@@ -1,20 +1,21 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: 'android-maven'
+apply plugin: 'signing'
+
+group = 'com.polidea'
 
 android {
     compileSdkVersion 21
     buildToolsVersion "21.1.1"
 
-    group = 'com.polidea'
-    version = '1.0'
-
     signingConfigs {
         hierarchyViewerConfig {
             storeFile file("${rootDir}/dev_tools/hierarchy_viewer.keystore")
-            storePassword "*******"
-            keyAlias "*******"
-            keyPassword "*******"
+            storePassword project.hasProperty('storePass') ? project['storePass'] : ''
+            keyAlias project.hasProperty('alias') ? project['alias'] : ''
+            keyPassword project.hasProperty('keyPass') ? project['keyPass'] : ''
         }
     }
 
@@ -34,6 +35,72 @@ android {
 
     lintOptions {
         abortOnError false
+    }
+}
+
+// Set up for Sonatype OSS repository
+def isReleaseVersion = !version.endsWith('SNAPSHOT')
+
+def siteUrl = 'https://github.com/Polidea/android-hierarchy-viewer'      // Homepage URL of the library
+def gitUrl = 'https://github.com/Polidea/android-hierarchy-viewer.git'   // Git repository URL
+
+signing {
+    required { isReleaseVersion && gradle.taskGraph.hasTask(':uploadArchives') }
+
+    sign configurations.archives
+}
+
+def uploadUsername = project.hasProperty('userName') ? project['userName'] : ''
+def uploadPassword = project.hasProperty('userPass') ? project['userPass'] : ''
+
+def artifactId = 'hierarchyviewer'
+
+uploadArchives {
+    repositories.mavenDeployer {
+        beforeDeployment { MavenDeployment deployment ->
+            if (isReleaseVersion) {
+                signing.signPom(deployment)
+            }
+        }
+
+        snapshotRepository(url: 'https://oss.sonatype.org/content/repositories/snapshots') {
+            authentication(userName: uploadUsername, password: uploadPassword)
+        }
+
+        repository(url: 'https://oss.sonatype.org/service/local/staging/deploy/maven2/') {
+            authentication(userName: uploadUsername, password: uploadPassword)
+        }
+
+        pom.artifactId = artifactId
+
+        pom.project {
+            name 'android-hierarchy-viewer'
+            packaging 'jar'
+            description 'Hierarchy Viewer is a library which allows to display views tree of your application in the simple way on your Gooogle Chrome browser.'
+            url 'https://github.com/Polidea/android-hierarchy-viewer'
+
+            scm {
+                url 'scm:git@github.com:Polidea/android-hierarchy-viewer.git'
+                connection 'scm:git@github.com:Polidea/android-hierarchy-viewer.git'
+                developerConnection 'scm:git@github.com:Polidea/android-hierarchy-viewer.git'
+            }
+
+            licenses {
+                license {
+                    name 'The MIT License (MIT)'
+                    url 'https://github.com/Polidea/android-hierarchy-viewer/blob/master/LICENSE'
+                    distribution 'repo'
+                }
+            }
+
+            developers {
+                developer {
+                    id 'Polidea-Dev'
+                    email 'it@polidea.com'
+                    name 'Polidea'
+                }
+            }
+        }
     }
 }
 

@@ -7,9 +7,9 @@ android {
     signingConfigs {
         hierarchyViewerConfig {
             storeFile file("${rootDir}/dev_tools/hierarchy_viewer.keystore")
-            storePassword "*******"
-            keyAlias "*******"
-            keyPassword "*******"
+            storePassword project.hasProperty('storePass') ? project['storePass'] : ''
+            keyAlias project.hasProperty('alias') ? project['alias'] : ''
+            keyPassword project.hasProperty('keyPass') ? project['keyPass'] : ''
         }
     }
 
