@@ -134,6 +134,7 @@ When you will open link in your browser you wil see infromation about your views
 
 ##Used libraries
 
+* **[Polymer]** https://www.polymer-project.org
 * **[dagger 2]** https://github.com/google/dagger
 * **[Gson]** https://github.com/google/gson
 * **[nanohttpd]** https://github.com/NanoHttpd/nanohttpd
