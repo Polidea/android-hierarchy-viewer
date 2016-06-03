@@ -1,12 +1,12 @@
 package com.polidea.hierarchyviewer.internal.provider;
 
 import android.content.Context;
+
+import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
-import java.net.SocketException;
 import java.util.Collections;
 import java.util.List;
-import org.apache.http.conn.util.InetAddressUtils;
 
 
 public class ServerInfoProvider {
@@ -17,9 +17,9 @@ public class ServerInfoProvider {
         this.context = context;
     }
 
-    public String getIpAddress() {
+    String getIpAddress() {
         String ipAddress = getIpAddress(true);
-        if(ipAddress == null) {
+        if (ipAddress == null) {
             ipAddress = getIpAddress(false);
         }
         return ipAddress;
@@ -31,7 +31,7 @@ public class ServerInfoProvider {
             List<NetworkInterface> interfaces = Collections.list(NetworkInterface.getNetworkInterfaces());
             for (NetworkInterface intf : interfaces) {
                 result = getIpAddress(intf, useIPv4);
-                if(result != null) {
+                if (result != null) {
                     break;
                 }
             }
@@ -48,11 +48,11 @@ public class ServerInfoProvider {
         for (InetAddress addr : addrs) {
             if (!addr.isLoopbackAddress()) {
                 String sAddr = addr.getHostAddress().toUpperCase();
-                boolean isIPv4 = InetAddressUtils.isIPv4Address(sAddr);
-                if(useIPv4 && isIPv4) {
+                boolean isIPv4 = addr instanceof Inet4Address;
+                if (useIPv4 && isIPv4) {
                     result = sAddr;
                     break;
-                } else if(!useIPv4 && !isIPv4) {
+                } else if (!useIPv4 && !isIPv4) {
                     result = sAddr;
                     break;
                 }
