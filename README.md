@@ -22,7 +22,7 @@ allprojects {
 Add library:
 
 ```gradle
-compile 'com.polidea:hierarchyviewer:1.0.0-SNAPSHOT'
+compile 'com.polidea:hierarchyviewer:1.0.1-SNAPSHOT'
 ```
 or Maven. Add plugin repository:
 
@@ -41,7 +41,7 @@ Add library:
 <dependency>
   <groupId>com.polidea</groupId>
   <artifactId>hierarchyviewer</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
+  <version>1.0.1-SNAPSHOT</version>
 </dependency>
 ```
 
