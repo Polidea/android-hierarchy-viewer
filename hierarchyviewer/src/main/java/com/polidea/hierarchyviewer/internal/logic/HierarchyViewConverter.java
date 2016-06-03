@@ -1,6 +1,7 @@
 package com.polidea.hierarchyviewer.internal.logic;
 
 import android.view.View;
+
 import com.google.gson.Gson;
 import com.polidea.hierarchyviewer.HierarchyViewer;
 import com.polidea.hierarchyviewer.internal.model.HierarchyViewModel;
@@ -9,29 +10,22 @@ import com.polidea.hierarchyviewer.internal.model.view.ModelInfo;
 import com.polidea.hierarchyviewer.internal.model.view.ViewModelInfo;
 import com.polidea.hierarchyviewer.internal.provider.FileUtilsProvider;
 import com.polidea.hierarchyviewer.internal.provider.HierarchyViewProvider;
+
 import java.util.List;
 import java.util.UUID;
-import javax.inject.Inject;
-import javax.inject.Singleton;
 
 public class HierarchyViewConverter {
 
-    @Inject
-    HierarchyViewProvider hierarchyViewProvider;
+    private HierarchyViewProvider hierarchyViewProvider;
+    private Gson gson;
+    private ConvertersContainer convertersContainer;
+    private FileUtilsProvider fileUtilsProvider;
 
-    @Inject
-    Gson gson;
-
-    @Inject
-    ConvertersContainer convertersContainer;
-
-    @Inject
-    FileUtilsProvider fileUtilsProvider;
-
-    @Singleton
-    @Inject
-    HierarchyViewConverter() {
-        HierarchyViewer.component().inject(this);
+    public HierarchyViewConverter() {
+        hierarchyViewProvider = HierarchyViewer.injector().getHierarchyViewProvider();
+        gson = HierarchyViewer.injector().getGson();
+        convertersContainer = HierarchyViewer.injector().getConvertersContainer();
+        fileUtilsProvider = HierarchyViewer.injector().getFileUtilsProvider();
     }
 
     public String getHierarchyViewJson() {

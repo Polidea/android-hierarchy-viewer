@@ -3,32 +3,17 @@ package com.polidea.hierarchyviewer.internal.provider;
 import android.graphics.Bitmap;
 import android.os.Environment;
 import android.view.View;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import javax.inject.Inject;
-import javax.inject.Singleton;
 
 public class FileUtilsProvider {
 
-    public static final String SERVER_CACHE_DIR = Environment.getExternalStorageDirectory().toString() + "/serverCache";
+    private static final String SERVER_CACHE_DIR = Environment.getExternalStorageDirectory().toString() + "/serverCache";
 
-    @Singleton
-    @Inject
-    FileUtilsProvider() {
-
-    }
-
-    public boolean createCacheFolderIfNotExist() {
-        File dir = new File(SERVER_CACHE_DIR);
-        if (!dir.exists()) {
-            return dir.mkdir();
-        }
-        return true;
-    }
-
-    public boolean clearCacheFolder() {
+    boolean clearCacheFolder() {
         File dir = new File(SERVER_CACHE_DIR);
         File[] files = dir.listFiles();
         if (files != null) {
@@ -37,6 +22,15 @@ public class FileUtilsProvider {
             }
         }
         return true;
+    }
+
+    boolean createCacheFolderIfNotExist() {
+        File dir = new File(SERVER_CACHE_DIR);
+        return dir.exists() || dir.mkdir();
+    }
+
+    File getFile(String linkToFile) {
+        return new File(new File(SERVER_CACHE_DIR), "IMG_" + linkToFile + ".png");
     }
 
     public boolean saveViewInFile(View view, String fileName) {
@@ -62,9 +56,5 @@ public class FileUtilsProvider {
             return false;
         }
         return true;
-    }
-
-    public File getFile(String linkToFile) {
-        return new File(new File(SERVER_CACHE_DIR), "IMG_" + linkToFile + ".png");
     }
 }

@@ -1,21 +1,21 @@
 package com.polidea.hierarchyviewer.internal.provider;
 
-import static fi.iki.elonen.NanoHTTPD.Response.Status.OK;
-
 import android.content.Context;
+
 import com.polidea.hierarchyviewer.HierarchyViewer;
 import com.polidea.hierarchyviewer.internal.logic.HierarchyViewConverter;
-import fi.iki.elonen.NanoHTTPD;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import javax.inject.Inject;
+
+import fi.iki.elonen.NanoHTTPD;
+
+import static fi.iki.elonen.NanoHTTPD.Response.Status.OK;
 
 public class WebServer extends NanoHTTPD {
 
-    private static final String WEBAPP_PATH = "webapp";
-
-    public static final String
+    private static final String
             MIME_PLAINTEXT = "text/plain",
             MIME_HTML = "text/html",
             MIME_JS = "application/javascript",
@@ -26,31 +26,18 @@ public class WebServer extends NanoHTTPD {
             MIME_XML = "text/xml",
             API_HIERARCHY = "/api/hierarchy",
             API_SCREEN = "/api/screen/";
-
-
-    @Inject
-    HierarchyViewConverter hierarchyViewConverter;
-
-    @Inject
-    FileUtilsProvider fileUtilsProvider;
-
-
-    @Inject
-    ServerInfoProvider serverInfoProvider;
-
+    private static final String WEBAPP_PATH = "webapp";
     private final Context context;
+    private HierarchyViewConverter hierarchyViewConverter;
+    private FileUtilsProvider fileUtilsProvider;
+    private ServerInfoProvider serverInfoProvider;
 
     public WebServer(Context ctx, int port) {
         super(port);
         context = ctx;
-        HierarchyViewer.component().inject(this);
-    }
-
-    @Override
-    public void start() throws IOException {
-        super.start();
-        fileUtilsProvider.createCacheFolderIfNotExist();
-        fileUtilsProvider.clearCacheFolder();
+        hierarchyViewConverter = HierarchyViewer.injector().getHierarchyViewConverter();
+        fileUtilsProvider = HierarchyViewer.injector().getFileUtilsProvider();
+        serverInfoProvider = HierarchyViewer.injector().getServerInfoProvider();
     }
 
     @Override
@@ -90,6 +77,13 @@ public class WebServer extends NanoHTTPD {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public void start() throws IOException {
+        super.start();
+        fileUtilsProvider.createCacheFolderIfNotExist();
+        fileUtilsProvider.clearCacheFolder();
     }
 
     private InputStream getFileFromAssets(String path) throws IOException {

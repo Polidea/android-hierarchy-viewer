@@ -3,29 +3,25 @@ package com.polidea.hierarchyviewer.internal.provider;
 import android.content.Context;
 import android.os.Build;
 import android.util.Log;
+
 import com.polidea.hierarchyviewer.Config;
 import com.polidea.hierarchyviewer.HierarchyViewer;
 import com.polidea.hierarchyviewer.R;
-import javax.inject.Inject;
 
 public class DeviceInfoProvider {
 
-    public final static String LOG_TAG = "Hierarchy Viewer";
-
-    @Inject
-    ServerInfoProvider serverInfoProvider;
-
-    @Inject
-    Config config;
-
+    private final static String LOG_TAG = "Hierarchy Viewer";
     private final Context context;
+    private ServerInfoProvider serverInfoProvider;
+    private Config config;
 
     public DeviceInfoProvider(Context context) {
         this.context = context;
-        HierarchyViewer.component().inject(this);
+        serverInfoProvider = HierarchyViewer.injector().getServerInfoProvider();
+        config = HierarchyViewer.injector().getConfig();
     }
 
-    public boolean isEmulator() {
+    private boolean isEmulator() {
         return Build.FINGERPRINT.startsWith("generic");
     }
 
