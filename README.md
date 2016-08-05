@@ -125,7 +125,7 @@ When you will open link in your browser you wil see infromation about your views
 
 **Polidea developers**
 * Paweł Janeczek (pawel.janeczek@polidea.com)
-* Piotr Dubiel (piotr.dubiel@polidea.com_
+* Piotr Dubiel (piotr.dubiel@polidea.com)
 * Konrad Krakowiak (konrad.krakowiak@polidea.com)
 
 ##Polidea
