@@ -124,9 +124,9 @@ When you will open link in your browser you wil see infromation about your views
 ##Main Contributors
 
 **Polidea developers**
-* Paweł Janeczek
-* Piotr Dubiel
-* Konrad Krakowiak
+* Paweł Janeczek (pawel.janeczek@polidea.com)
+* Piotr Dubiel (piotr.dubiel@polidea.com
+* Konrad Krakowiak (konrad.krakowiak@polidea.com)
 
 ##Polidea
 
@@ -143,7 +143,9 @@ When you will open link in your browser you wil see infromation about your views
 
 ##License
 
-[LICENSE](https://github.com/Polidea/android-hierarchy-viewer/blob/master/LICENSE)
+MIT.
+
+For details see [LICENSE](https://github.com/Polidea/android-hierarchy-viewer/blob/master/LICENSE)
 
 
 
