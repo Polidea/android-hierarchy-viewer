@@ -22,7 +22,7 @@ allprojects {
 Add library:
 
 ```gradle
-compile 'com.polidea:hierarchyviewer:1.0.1-SNAPSHOT'
+compile 'com.polidea:hierarchyviewer:1.0.2'
 ```
 or Maven. Add plugin repository:
 
