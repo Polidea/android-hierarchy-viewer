@@ -6,42 +6,17 @@ Hierarchy Viewer is a library which allows to display views tree of your applica
 
 ###Download
 
-Via gradle. In main build.gradle :
-
-```gradle
-allprojects {
-    repositories {
-        ...
-        maven {
-            url "https://oss.sonatype.org/content/repositories/snapshots"
-        }
-    }
-}
-```
-
-Add library:
-
+Via gradle:
 ```gradle
 compile 'com.polidea:hierarchyviewer:1.0.2'
 ```
-or Maven. Add plugin repository:
 
-```xml
-<pluginRepository>
-    <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-    <snapshots>
-        <enabled>true</enabled>
-    </snapshots>
-</pluginRepository>
-```
-
-Add library:
-
+Via Maven:
 ```xml
 <dependency>
   <groupId>com.polidea</groupId>
   <artifactId>hierarchyviewer</artifactId>
-  <version>1.0.1-SNAPSHOT</version>
+  <version>1.0.2</version>
 </dependency>
 ```
 
@@ -135,7 +110,6 @@ When you will open link in your browser you wil see infromation about your views
 ##Used libraries
 
 * **[Polymer]** https://www.polymer-project.org
-* **[dagger 2]** https://github.com/google/dagger
 * **[Gson]** https://github.com/google/gson
 * **[nanohttpd]** https://github.com/NanoHttpd/nanohttpd
 * **[android support library v4 v7]** 
